@@ -10,7 +10,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
     }
 }
 rootProject.name = "SpaceZAndroidJava"
 include ':app'
+include ':sample'
+include ':meowbottomnavigation'

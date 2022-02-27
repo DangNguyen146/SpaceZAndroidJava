@@ -20,12 +20,18 @@
         <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/drawable/input_bg.xml" value="0.328" />
         <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_check_mail.xml" value="0.30512820512820515" />
         <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_intro_screen.xml" value="0.18" />
-        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_login_screen.xml" value="0.4330827067669173" />
+        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_login_screen.xml" value="0.16" />
         <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_lottie_animation.xml" value="0.3183876811594203" />
-        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_main.xml" value="0.3183876811594203" />
+        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_register.xml" value="0.25249320036264733" />
-        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_register_screen.xml" value="0.2" />
+        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_register_screen.xml" value="0.67" />
         <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/activity_splash_screen.xml" value="0.31927083333333334" />
+        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/custom_dialog.xml" value="0.23257802479692177" />
+        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/fragment_home.xml" value="0.21666666666666667" />
+        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/fragment_mess.xml" value="0.21666666666666667" />
+        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/fragment_n_f_c.xml" value="0.21666666666666667" />
+        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/fragment_profile.xml" value="0.21666666666666667" />
+        <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/fragment_setting.xml" value="0.21666666666666667" />
         <entry key="..\:/UIT-HKII-2021/LapTrinhUngDungTrenThietBiDiDong/DoAn/AndroiStudio/app/src/main/res/layout/layout_screen.xml" value="0.21804189824711415" />
       </map>
     </option>

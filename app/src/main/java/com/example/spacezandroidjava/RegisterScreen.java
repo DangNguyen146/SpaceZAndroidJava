@@ -6,16 +6,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import okhttp3.OkHttpClient;
+
 public class RegisterScreen extends AppCompatActivity {
-    TextView titleSignin;
+    TextView titleSignin, erro;
     TextInputLayout inputLastName, inputName, inputUserName, inputEmail, inputPassWord, inputComformPassWord;
     Button btnReg;
+    LoadingDialalog loadingDialalog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +42,7 @@ public class RegisterScreen extends AppCompatActivity {
         inputEmail = findViewById(R.id.textInputLayout8);
         inputPassWord = findViewById(R.id.textInputLayout10);
         inputComformPassWord = findViewById(R.id.textInputLayout11);
+        loadingDialalog = new LoadingDialalog(this);
 
         titleSignin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,6 +216,7 @@ public class RegisterScreen extends AppCompatActivity {
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 boolean test= true;
                 String lastname = inputLastName.getEditText().getText().toString().trim();
                 String name = inputName.getEditText().getText().toString().trim();
@@ -210,52 +224,90 @@ public class RegisterScreen extends AppCompatActivity {
                 String email = inputEmail.getEditText().getText().toString().trim();
                 String pass = inputPassWord.getEditText().getText().toString().trim();
                 String comfomPass = inputComformPassWord.getEditText().getText().toString().trim();
-                if (lastname.isEmpty()) {
-                    inputLastName.setErrorEnabled(true);
-                    inputLastName.setError("Chưa nhập họ");
-                    test=false;
-                }
-                if (name.isEmpty()) {
-                    inputName.setErrorEnabled(true);
-                    inputName.setError("Chưa nhập tên");
-                    test=false;
-                }
-                if (username.isEmpty()) {
-                    inputUserName.setErrorEnabled(true);
-                    inputUserName.setError("Chưa nhập username");
-                    test=false;
-                }
-                if (email.isEmpty()) {
-                    inputEmail.setErrorEnabled(true);
-                    inputEmail.setError("Chưa nhập địa chỉ email");
-                    test=false;
-                }
-                if (pass.isEmpty()) {
-                    inputPassWord.setErrorEnabled(true);
-                    inputPassWord.setError("Chưa nhập mật khẩu");
-                    test=false;
-                }
-                if (comfomPass.isEmpty()) {
-                    inputComformPassWord.setErrorEnabled(true);
-                    inputComformPassWord.setError("Chưa nhập lại mật khẩu");
-                    test=false;
-                }
-                else{
-                    if(!comfomPass.equals(pass))
-                    {
-                        inputComformPassWord.setErrorEnabled(true);
-                        inputComformPassWord.setError("Nhập lại mật khẩu không chính xác");
-                        test=false;
-                    }
-                    else{
-                        inputComformPassWord.setError(null);
-                        inputComformPassWord.setErrorEnabled(false);
-                    }
-                }
+//                if (lastname.isEmpty()) {
+//                    inputLastName.setErrorEnabled(true);
+//                    inputLastName.setError("Chưa nhập họ");
+//                    test=false;
+//                }
+//                if (name.isEmpty()) {
+//                    inputName.setErrorEnabled(true);
+//                    inputName.setError("Chưa nhập tên");
+//                    test=false;
+//                }
+//                if (username.isEmpty()) {
+//                    inputUserName.setErrorEnabled(true);
+//                    inputUserName.setError("Chưa nhập username");
+//                    test=false;
+//                }
+//                if (email.isEmpty()) {
+//                    inputEmail.setErrorEnabled(true);
+//                    inputEmail.setError("Chưa nhập địa chỉ email");
+//                    test=false;
+//                }
+//                if (pass.isEmpty()) {
+//                    inputPassWord.setErrorEnabled(true);
+//                    inputPassWord.setError("Chưa nhập mật khẩu");
+//                    test=false;
+//                }
+//                if (comfomPass.isEmpty()) {
+//                    inputComformPassWord.setErrorEnabled(true);
+//                    inputComformPassWord.setError("Chưa nhập lại mật khẩu");
+//                    test=false;
+//                }
+//                else{
+//                    if(!comfomPass.equals(pass))
+//                    {
+//                        inputComformPassWord.setErrorEnabled(true);
+//                        inputComformPassWord.setError("Nhập lại mật khẩu không chính xác");
+//                        test=false;
+//                    }
+//                    else{
+//                        inputComformPassWord.setError(null);
+//                        inputComformPassWord.setErrorEnabled(false);
+//                    }
+//                }
 
                 if (test==true){
-                    startActivity(new Intent(RegisterScreen.this, CheckMail.class));
+                    loadingDialalog.ShowDialog("Đang tải...");
+                    RegisterRequest registerRequest = new RegisterRequest();
+//                    registerRequest.setEmail(email);
+//                    registerRequest.setLastName(lastname);
+//                    registerRequest.setFirstName(name);
+//                    registerRequest.setUsername(username);
+//                    registerRequest.setPassword(pass);
+
+                    registerRequest.setEmail("blacksonia.note@gmail.com");
+                    registerRequest.setLastName("nguyen");
+                    registerRequest.setFirstName("dang");
+                    registerRequest.setUsername("dangnguyen");
+                    registerRequest.setPassword("1234");
+                    register(registerRequest);
                 }
+            }
+        });
+    }
+    public void register(RegisterRequest registerRequest){
+        Call<RegisterRespon> registerResponCall = ApiClient.getService().registerRespon(registerRequest);
+        registerResponCall.enqueue(new Callback<RegisterRespon>() {
+            @Override
+            public void onResponse(Call<RegisterRespon> call, Response<RegisterRespon> response) {
+                if (response.isSuccessful()){
+                    String message =  "Thành công";
+                    Toast.makeText(RegisterScreen.this,message,Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterScreen.this, CheckMail.class));
+                    finish();
+                }else {
+                    String message =  "Tài khoản đã tồn tại";
+                    erro = findViewById(R.id.erroRegister);
+                    erro.setText(message);
+                    loadingDialalog.HideDialog();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterRespon> call, Throwable t) {
+                String message= t.getLocalizedMessage();
+                Toast.makeText(RegisterScreen.this,message,Toast.LENGTH_LONG).show();
             }
         });
     }

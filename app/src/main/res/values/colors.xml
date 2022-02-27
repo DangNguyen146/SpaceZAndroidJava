@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--    color for button-->
-    <color name="gradiant_start_color">#4c84ff</color>
+    <color name="gradiant_start_color">#236BFE</color>
     <color name="gradiant_end_color">#10a3fe</color>
 
     <!--    color for tabs and screen text-->

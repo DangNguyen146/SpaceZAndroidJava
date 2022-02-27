@@ -37,7 +37,7 @@ public class IntroScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (restorePrefData()) {
-            Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class );
+            Intent mainActivity = new Intent(getApplicationContext(),LoginScreen.class );
             startActivity(mainActivity);
             finish();
         }
@@ -112,7 +112,7 @@ public class IntroScreen extends AppCompatActivity {
         btnStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                Intent mainActivity = new Intent(getApplicationContext(),RegisterScreen.class);
                 startActivity(mainActivity);
 
                 savePrefsData();

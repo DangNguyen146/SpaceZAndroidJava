@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpaceZAndroidJava">
         <activity
+            android:name=".CheckMail"
+            android:exported="false" />
+        <activity
+            android:name=".LoginScreen"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterScreen"
+            android:exported="false" />
+        <activity
             android:name=".IntroScreen"
             android:exported="false" />
         <activity

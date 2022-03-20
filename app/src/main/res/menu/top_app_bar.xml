@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/hard_card"
+
+        android:title="thẻ cứng"
+
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/soft_card"
+
+        android:title="thẻ mềm"
+
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/circle_card"
+
+        android:title="thẻ tròn"
+
+        app:showAsAction="ifRoom" />
+
+
+</menu>

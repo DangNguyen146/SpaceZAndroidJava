@@ -60,7 +60,7 @@ public class ProductGridAdapter extends BaseAdapter {
            holder = (ViewHolder) view.getTag();
        }
        Product product=this.lstProduct.get(i);
-       holder.nameView.setText("demo");
+       holder.nameView.setText(product.getName());
        return  view;
 
     }

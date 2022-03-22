@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f4f4f4"
+
+        tools:context=".DetailProductActivity">
+
+
+        <ImageView
+            android:id="@+id/product_img"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="product_img"
+            android:paddingHorizontal="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/sau_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/baloo_tamma"
+            android:text="Vưu Tấn"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/product_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/product_img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.647" />
+
+        <LinearLayout
+            android:id="@+id/product_info_container"
+            app:layout_constraintTop_toBottomOf="@+id/product_img"
+            android:layout_width="match_parent"
+            android:paddingHorizontal="10dp"
+            android:background="@drawable/main_header_selector"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/product_info"
+                android:layout_weight="2"
+                android:paddingVertical="6dp"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="thẻ black 2"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/baloo_tamma"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gía: 30.0000 vnd"
+                    android:textColor="@color/white"
+
+                    android:fontFamily="@font/baloo_tamma"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_add_to_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chọn mua"
+                android:textSize="15sp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/baloo_tamma"
+                android:drawableLeft="@drawable/ic_cart_24"
+                android:layout_weight="1"
+
+                android:background="#ff007a"/>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/product_content_container"
+            android:paddingHorizontal="10dp"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_info_container"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingBottom="20dp"
+
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/view"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+
+                android:text="4 lượt xem sản phẩm"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:drawableEndCompat="@drawable/ic_view_24" />
+
+            <TextView
+                android:id="@+id/product_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view"
+
+                android:fontFamily="@font/baloo_paaji_2"
+
+                android:text="thẻ này có màu đen rất huyền bí"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <RatingBar
+                android:id="@+id/rating_btn"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/product_description"
+
+                android:numStars="5"
+                android:rating="5"
+                android:theme="@style/RatingBar"
+                tools:ignore="MissingConstraints,UnknownId" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/rating_btn"
+
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@+id/rating_btn"
+                android:text="(1 bình chọn)"
+
+
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rating_btn"
+                android:fontFamily="@font/baloo_tamma"
+                android:text="Tag"
+
+                android:textColor="#393939"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/tag1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tag"
+                android:background="@drawable/tagbtn"
+
+                android:minHeight="0dp"
+
+                android:text="#2022" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tag1"
+                android:layout_toRightOf="@+id/tag1"
+                android:background="@drawable/tagbtn"
+                android:minHeight="0dp"
+
+                android:text="#2021" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/product_content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bình luận"
+                android:textSize="25dp"
+
+                android:fontFamily="@font/baloo_tamma"
+                android:textColor="@color/black"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Viết bình luận"
+                android:paddingHorizontal="10dp"
+                android:textColorHint="#c1c2c1"
+                android:background="@drawable/comment"/>
+
+        </LinearLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+    
+<!--midnight quietly makes me miss these moments with her. it's so sad :((-->

@@ -25,6 +25,7 @@ public class LottieAnimation extends AppCompatActivity {
                 if (restorePrefData()) {
                     Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class );
                     startActivity(mainActivity);
+                    finish();
                 } else{
                     Intent i = new Intent(getApplicationContext(), IntroScreen.class);
                     startActivity(i);

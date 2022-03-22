@@ -1,18 +1,23 @@
 package com.example.spacezandroidjava;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.spacezandroidjava.Model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +101,17 @@ public class HomeFragment extends Fragment {
                 Log.i( "onClick: ","click");
             }
         });
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Object o=gridView.getItemAtPosition(i);
+                Product product=(Product) o;
+                Intent intent=new Intent(getActivity(),DetailProductActivity.class);
+                startActivity(intent.putExtra("product",product));
+
+
+            }
+        });
 //        List<Product> lst_product=getListData();
 
 //        gridView.setAdapter(new ProductGridAdapter(this.getContext(), lst_product));
@@ -105,7 +121,7 @@ public class HomeFragment extends Fragment {
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                List<Product>products=response.body();
+                List<Product> products=response.body();
 
                 gridView.setAdapter(new ProductGridAdapter(context,products));
             }

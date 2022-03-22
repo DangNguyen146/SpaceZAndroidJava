@@ -1,11 +1,13 @@
 package com.example.spacezandroidjava.Model;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product {
+public class Product  implements Serializable {
 
     private  int id;
     private String name;

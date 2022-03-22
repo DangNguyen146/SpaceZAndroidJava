@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.spacezandroidjava.Model.Product;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,6 +63,7 @@ public class ProductGridAdapter extends BaseAdapter {
        }
        Product product=this.lstProduct.get(i);
        holder.nameView.setText(product.getName());
+
        return  view;
 
     }

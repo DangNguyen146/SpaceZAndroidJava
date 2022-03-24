@@ -58,14 +58,15 @@
                     android:id="@+id/product_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="thẻ black 2"
+
                     android:textColor="@color/white"
                     android:fontFamily="@font/baloo_tamma"
                     android:textSize="20sp"/>
                 <TextView
+                    android:id="@+id/product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gía: 30.0000 vnd"
+
                     android:textColor="@color/white"
 
                     android:fontFamily="@font/baloo_tamma"
@@ -116,7 +117,7 @@
 
                 android:fontFamily="@font/baloo_paaji_2"
 
-                android:text="thẻ này có màu đen rất huyền bí"
+
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -128,7 +129,7 @@
                 android:layout_below="@+id/product_description"
 
                 android:numStars="5"
-                android:rating="5"
+
                 android:theme="@style/RatingBar"
                 tools:ignore="MissingConstraints,UnknownId" />
 

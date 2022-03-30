@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#f4f4f4"
@@ -27,11 +27,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/user_lastName_firstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:clickable="true"
             android:fontFamily="@font/baloo_tamma"
-            android:text="Vưu Tấn"
             android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/product_img"
@@ -39,6 +40,7 @@
             app:layout_constraintStart_toStartOf="@+id/product_img"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.647" />
+
 
         <LinearLayout
             android:id="@+id/product_info_container"
@@ -83,7 +85,7 @@
                 android:drawableLeft="@drawable/ic_cart_24"
                 android:layout_weight="1"
 
-                android:background="#ff007a"/>
+              />
 
         </LinearLayout>
         <RelativeLayout

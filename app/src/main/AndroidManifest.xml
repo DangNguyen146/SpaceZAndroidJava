@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SpaceZAndroidJava"
         android:windowSoftInputMode="adjustPan">
         <activity
+            android:name=".CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailProductActivity"
             android:exported="false" />
         <activity

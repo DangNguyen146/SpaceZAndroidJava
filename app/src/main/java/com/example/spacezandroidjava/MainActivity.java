@@ -7,6 +7,7 @@ import android.app.Notification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         if (intent.getExtras()!=null){
             loginRespon = (LoginRespon) intent.getSerializableExtra("data");
             savePrefsData(loginRespon.getToken());
+            savePrefFistNameLastName(loginRespon.getFirstName(),loginRespon.getLastName());
         }
 
         //assign variable
@@ -98,5 +100,13 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("isLogin",token);
         editor.commit();
+    }
+    private void savePrefFistNameLastName(String firstName,String lastName){
+     SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+     SharedPreferences.Editor editor=pref.edit();
+     editor.putString("firstName",firstName);
+     editor.putString("lastName",lastName);
+     editor.commit();
+
     }
 }

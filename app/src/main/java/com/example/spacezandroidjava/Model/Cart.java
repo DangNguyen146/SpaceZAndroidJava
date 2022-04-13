@@ -15,8 +15,9 @@ public class Cart implements Serializable {
     private int price;
     private int amount;
     private int idProduct;
+    private int idCart;
     @SerializedName("product")
-    private Object product;
+    private Product product;
 
 
 

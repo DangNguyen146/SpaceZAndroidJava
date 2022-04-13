@@ -32,8 +32,12 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
         openCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent=new Intent(getActivity(),CartActivity.class);
+
                 startActivity(intent);
+                dismiss();
+
             }
         });
 

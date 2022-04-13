@@ -33,9 +33,17 @@
                 app:title="Giỏ Hàng"
                 app:titleCentered="true" />
 
+
         </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_lv"
+        app:layout_constraintTop_toBottomOf="@+id/top_appbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
 
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 

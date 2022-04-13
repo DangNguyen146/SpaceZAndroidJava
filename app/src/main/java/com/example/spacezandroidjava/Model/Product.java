@@ -10,7 +10,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Product  implements Serializable {
+    public Product(int id,String name){
+        this.id=id;
+        this.name=name;
 
+    }
     private  int id;
     @SerializedName("description")
     private String  description;

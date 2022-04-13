@@ -16,17 +16,27 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.spacezandroidjava.Model.AddToCartRequest;
+import com.example.spacezandroidjava.Model.AddToCartResponse;
+import com.example.spacezandroidjava.Model.Cart;
 import com.example.spacezandroidjava.Model.Product;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import lombok.val;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailProductActivity extends AppCompatActivity {
     private BottomSheetDialog  bottomSheetDialog;
+    private List<Product> lstItemCart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +49,20 @@ public class DetailProductActivity extends AppCompatActivity {
         Button btn_cart=(Button) findViewById(R.id.btn_add_to_cart);
         TextView username_tv=(TextView) findViewById(R.id.user_lastName_firstName);
         EditText  editText=new EditText(this);
+        lstItemCart=new LinkedList<Product>();
+        SharedPreferences recvPref=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        Gson gson=new Gson();
+        String json=recvPref.getString("lstProduct","");
+        Type listType = new TypeToken<LinkedList<Product>>(){}.getType();
+        if(!json.equals(""))
+            lstItemCart=gson.fromJson(json,listType);
 
 
-
-//        editText.setPadding(5,0,0,0);
-//        Typeface type = Typeface.createFromAsset(getAssets(),"@font/baloo_tamma");
-//        editText.setTypeface(type);
+        final SharedPreferences pref=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String firstName=pref.getString("firstName","Your");
+        String lastName=pref.getString("lastName","Name");
+        int userId=pref.getInt("userId",-1);
         AlertDialog dialog=new AlertDialog.Builder(this).create();
         dialog.setTitle("Nhập nội dung");
         dialog.setView(editText);
@@ -63,11 +81,26 @@ public class DetailProductActivity extends AppCompatActivity {
             btn_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+//                    them vao gio hang db
+                    addToCart(new AddToCartRequest(userId,p.getId()));
+                    lstItemCart.add(p);
+                    SharedPreferences savePref=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor=savePref.edit();
+                    Gson gson=new Gson();
+                    String json=gson.toJson(lstItemCart);
+
+                    editor.putString("lstProduct",json);
+                    editor.commit();
+
+
                     bottomSheetDialog=new BottomSheetDialog(p);
+
                     bottomSheetDialog.show(getSupportFragmentManager(),"tag");
+
 
                 }
             });
+
 
 
         }
@@ -77,9 +110,7 @@ public class DetailProductActivity extends AppCompatActivity {
                     username_tv.setText(editText.getText());
             }
         });
-      final SharedPreferences pref=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-      String firstName=pref.getString("firstName","Your");
-      String lastName=pref.getString("lastName","Name");
+
         username_tv.setText(firstName+" "+lastName);
         username_tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,4 +124,23 @@ public class DetailProductActivity extends AppCompatActivity {
 
 
     }
+    public void addToCart(AddToCartRequest addToCartRequest){
+        Call<AddToCartResponse> addToCartResponse=ApiClient.getService().addToCartResponse(addToCartRequest);
+        addToCartResponse.enqueue(new Callback<AddToCartResponse>() {
+            @Override
+            public void onResponse(Call<AddToCartResponse> call, Response<AddToCartResponse> response) {
+                if(response.isSuccessful()){
+                    Log.i("Call", "onResponse: success");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddToCartResponse> call, Throwable t) {
+                Log.i("Call", "onFailure: failed");
+            }
+        });
+
+
+    }
+
 }

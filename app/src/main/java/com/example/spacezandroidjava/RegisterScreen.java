@@ -36,12 +36,12 @@ public class RegisterScreen extends AppCompatActivity {
 
         titleSignin = findViewById(R.id.titleLogin);
         btnReg = findViewById(R.id.btnRegister);
-        inputLastName = findViewById(R.id.textInputLayout4);
-        inputName = findViewById(R.id.textInputLayout5);
-        inputUserName = findViewById(R.id.textInputLayout6);
-        inputEmail = findViewById(R.id.textInputLayout8);
-        inputPassWord = findViewById(R.id.textInputLayout10);
-        inputComformPassWord = findViewById(R.id.textInputLayout11);
+        inputLastName = (TextInputLayout) findViewById(R.id.textInputLayout4);
+        inputName = (TextInputLayout) findViewById(R.id.textInputLayout5);
+        inputUserName = (TextInputLayout) findViewById(R.id.textInputLayout6);
+        inputEmail = (TextInputLayout) findViewById(R.id.textInputLayout8);
+        inputPassWord =(TextInputLayout) findViewById(R.id.textInputLayout10);
+        inputComformPassWord =(TextInputLayout) findViewById(R.id.textInputLayout11);
         loadingDialalog = new LoadingDialalog(this);
 
         titleSignin.setOnClickListener(new View.OnClickListener() {

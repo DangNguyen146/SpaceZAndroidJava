@@ -3,6 +3,7 @@ package com.example.spacezandroidjava;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.ims.ImsMmTelManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,7 +99,9 @@ public class HomeFragment extends Fragment {
         btn_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i( "onClick: ","click");
+
+                Intent i=new Intent(getActivity(),CartActivity.class);
+                startActivity(i);
             }
         });
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

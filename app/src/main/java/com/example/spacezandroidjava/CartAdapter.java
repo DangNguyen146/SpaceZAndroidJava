@@ -1,32 +1,40 @@
 package com.example.spacezandroidjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.spacezandroidjava.Model.AdjustAmount;
 import com.example.spacezandroidjava.Model.Cart;
-import com.example.spacezandroidjava.Model.CartProduct;
 import com.example.spacezandroidjava.Model.Product;
 import com.google.gson.Gson;
 
-import java.lang.reflect.Field;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartAdapter extends  RecyclerView.Adapter<CartAdapter.ViewHolder> {
     private List<Cart> listProduct;
     private Context context;
+    int newTotal;
+    TextView tv_number;
 
     //    private List<Product> listProduct;
-    public CartAdapter(List<Cart>listProduct,Context context){
+    public CartAdapter(List<Cart>listProduct,Context context,TextView tv_number){
         this.listProduct=listProduct;
         this.context=context;
-
+        this.newTotal=0;
+        this.tv_number=tv_number;
 
     }
 
@@ -47,18 +55,63 @@ public class CartAdapter extends  RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
 
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Cart cart=listProduct.get(position);
-        Gson g=new Gson();
-        Object product=cart.getProduct();
-        CartProduct cP=g.fromJson(product.toString(),CartProduct.class);
-        holder.name.setText(cP.getName());
-        holder.price.setText("Giá:"+ Integer.toString(cP.getPrice()));
-        holder.itemView.setTag(cP.getId());
+
+        Product product=cart.getProduct();
+        holder.name.setText(product.getName());
+
+        holder.price.setText("Giá:"+ product.getPrice().toString());
+        holder.itemView.setTag(product.getId());
+        holder.eB.setNumber(Integer.toString(cart.getAmount()) );
+
+        holder.eB.setOnValueChangeListener(
+                new ElegantNumberButton.OnValueChangeListener() {
+                    @Override
+                    public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                        AdjustAmount adjustAmount=new AdjustAmount(cart.getIdCart(),cart.getIdProduct(),newValue);
+                        Call<Object> message=ApiClient.getService().adjustAmount(adjustAmount);
+                        message.enqueue(new Callback<Object>() {
+                            @Override
+                            public void onResponse(Call<Object> call, Response<Object> response) {
+                                Log.i("dfs", "onResponse: ");
+//                              int pos= holder.getAdapterPosition();
+                                changeAmount(holder.getAdapterPosition(),newValue);
+
+//                                holder.tv_total.setText(Integer.toString(calculateTotal()));
+                            newTotal=calculateTotal();
+                            tv_number.setText((Integer.toString(newTotal))+" đ");
+
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Object> call, Throwable t) {
+                                Log.i("failure", "onFailure: ");
+                            }
+                        });
+                    }
+                }
+        );
+
+        holder.p=product;
+        holder.c=cart;
 
     }
+    public void changeAmount(int pos,int newValue){
+        listProduct.get(pos).setAmount(newValue);
 
+    }
+    public  int calculateTotal(){
+        int total=0;
+       for (int i=0;i<listProduct.size();i++){
+           total+= listProduct.get(i).getProduct().getPrice()*listProduct.get(i).getAmount();
+       }
+       return total;
+    }
 
     @Override
     public int getItemCount() {
@@ -66,47 +119,34 @@ public class CartAdapter extends  RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
 
-//    @Override
-//    public View getView(int i, View view, ViewGroup viewGroup) {
-//        View viewProduct;
-//
-//        TextView name;
-//        TextView price;
-//        if(view==null){
-//            viewProduct=View.inflate(viewGroup.getContext(),R.layout.card,null);
-//        }
-//        else{
-//            viewProduct=view;
-//        }
-//        Cart cart=(Cart)getItem(i);
-//        Gson g=new Gson();
-//        Object product=cart.getProduct();
-//        CartProduct cP=g.fromJson(product.toString(),CartProduct.class);
-//
-////    Product p=(Product) getItem(i);
-//
-//
-//
-//
-//
-//
-//        name= (TextView) viewProduct.findViewById(R.id.card_name_cart);
-//        price=(TextView) viewProduct.findViewById(R.id.card_price_cart);
-//        name.setText(cP.getName());
-//        price.setText("Giá "+ Integer.toString(cP.getPrice()));
-//
-//        return viewProduct;
-//    }
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name;
         TextView price;
+        Context context;
+
+        Product p;
+        ElegantNumberButton eB;
+        Cart c;
         int id;
         int cartLength;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            context=itemView.getContext();
+            itemView.setOnClickListener(this);
             name=itemView.findViewById(R.id.card_name_cart);
             price=itemView.findViewById(R.id.card_price_cart);
+            eB=itemView.findViewById(R.id.amount_btn);
 
+
+
+        }
+
+
+
+        @Override
+        public void onClick(View view) {
+            Intent i=new Intent(context,DetailProductActivity.class);
+            context.startActivity(i.putExtra("product",p));
         }
     }
 }

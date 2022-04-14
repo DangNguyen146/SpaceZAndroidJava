@@ -95,6 +95,8 @@ public class HomeFragment extends Fragment {
         context=this.getContext();
         btn_cart=(ImageView) getView().findViewById(R.id.cart_btn);
         gridView=  (GridView) getView().findViewById(R.id.gridView);
+        LoadingDialalog loadingDialalog=new LoadingDialalog(getContext());
+        loadingDialalog.ShowDialog("Chờ xí đi, đang lấy hàng về nè :v");
 
         btn_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,9 +117,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
-//        List<Product> lst_product=getListData();
 
-//        gridView.setAdapter(new ProductGridAdapter(this.getContext(), lst_product));
         Retrofit retrofit=new Retrofit.Builder().baseUrl("https://nt118.herokuapp.com/api/v1/").addConverterFactory(GsonConverterFactory.create()).build();
         JsonPlaceHolderApi jsonPlaceHolderApi=retrofit.create(JsonPlaceHolderApi.class);
         Call<List<Product>> call=jsonPlaceHolderApi.getProduct();
@@ -125,13 +125,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 List<Product> products=response.body();
+                loadingDialalog.HideDialog();
 
                 gridView.setAdapter(new ProductGridAdapter(context,products));
             }
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                Log.i("onFailure: ","error");
+                loadingDialalog.HideDialog();
+                loadingDialalog.ShowDialog("Mất mạng rồi :((");
             }
         });
 

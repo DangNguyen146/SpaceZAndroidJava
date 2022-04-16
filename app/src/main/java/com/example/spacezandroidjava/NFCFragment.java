@@ -1,18 +1,18 @@
 package com.example.spacezandroidjava;
 
+import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,28 +21,30 @@ import android.widget.TextView;
  */
 public class NFCFragment extends Fragment {
 
-    ImageView ReadNfcImg;
-    ImageView WriteNfcImg;
+    private ImageView ReadNfcImg;
+    private ImageView WriteNfcImg;
 
+    private Context context;
     private NfcAdapter mNfcAdapter;
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public NFCFragment() {
     }
 
-    public static NFCFragment newInstance(String param1, String param2) {
-        NFCFragment fragment = new NFCFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+    public static NFCFragment newInstance() {
+        return new NFCFragment();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_nfc, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        context=this.getContext();
         ReadNfcImg = (ImageView) getView().findViewById(R.id.read_nfc_img);
         WriteNfcImg = (ImageView) getView().findViewById(R.id.write_nfc_img);
 
@@ -62,13 +64,10 @@ public class NFCFragment extends Fragment {
                 startActivity(i);
             }
         });
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_n_f_c, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 }

@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,8 +37,8 @@ public class CartActivity extends AppCompatActivity {
     CartAdapter cartAdapter;
     RecyclerView rv;
     TextView tv_total;
-
-
+    LoadingDialalog loadingDialalog;
+    Button btnPay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +49,19 @@ public class CartActivity extends AppCompatActivity {
 
         final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         int userId=pref.getInt("userId",-1);
+         loadingDialalog=new LoadingDialalog(this);
+        loadingDialalog.ShowDialog("Check kỹ giỏ hàng nhaaaaaaa");
         getCart(Integer.toString(userId) );
 
         itemTouchHelper.attachToRecyclerView(rv);
-
+            btnPay=(Button) findViewById(R.id.pay_btn);
+            Intent i=new Intent(this,PaymentActivity.class);
+            btnPay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(i);
+                }
+            });
 
 
     }
@@ -62,7 +73,8 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
                 List<Cart> myProductCart=response.body();
-//                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
+                loadingDialalog.HideDialog();
+
                 GridLayoutManager gridLayoutManager=new GridLayoutManager(getApplicationContext(),1);
                 tv_total=(TextView) findViewById(R.id.total_number);
                 cartAdapter=new CartAdapter(myProductCart,getApplicationContext(),tv_total);

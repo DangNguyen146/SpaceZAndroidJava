@@ -50,6 +50,9 @@
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/btngradient.xml" value="0.1735" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/cards.xml" value="0.1625" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/empty_tall_divider.xml" value="0.1745" />
+        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/googlepay_button_background.xml" value="0.1" />
+        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/googlepay_button_content.xml" value="0.1" />
+        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/googlepay_button_overlay.xml" value="0.1" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.1735" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1735" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1745" />
@@ -68,6 +71,7 @@
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/ic_facebook.xml" value="0.1735" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/ic_filter.xml" value="0.1735" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/ic_google.xml" value="0.1735" />
+        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/ic_view_24.xml" value="0.1735" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/indicator_default.xml" value="0.1735" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/drawable/indicator_selected.xml" value="0.1735" />
@@ -84,14 +88,18 @@
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/activity_login_screen.xml" value="0.18125" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/activity_lottie_animation.xml" value="0.18125" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/activity_main.xml" value="0.18125" />
+        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/activity_payment.xml" value="0.264" />
+        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/activity_payment_details.xml" value="0.1" />
+        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/bottom_modal.xml" value="0.18206521739130435" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.264" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/card.xml" value="0.2" />
-        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/custom_dialog.xml" value="0.1" />
+        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/custom_dialog.xml" value="0.264" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/fragment_detail_product_screen.xml" value="0.1838768115942029" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/fragment_mess.xml" value="0.1375" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/fragment_n_f_c.xml" value="0.14479166666666668" />
+        <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/googlepay_button.xml" value="0.16" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/header_layout.xml" value="0.4" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/layout_screen.xml" value="0.1375" />
         <entry key="..\:/courses/mobile/projects/nt118/SpaceZAndroidJava/app/src/main/res/layout/list_item.xml" value="0.264" />

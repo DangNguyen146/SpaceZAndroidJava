@@ -16,8 +16,11 @@ import android.view.ViewGroup;
 import com.example.spacezandroidjava.Model.Contact;
 
 
+import java.net.URISyntaxException;
 import java.util.List;
 
+import io.socket.client.IO;
+import io.socket.client.Socket;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,9 +40,19 @@ public class MessFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Socket mSocket;
+    {
+        try {
+            mSocket = IO.socket("https://nt118.herokuapp.com/");
+
+        } catch (URISyntaxException e) {
+            Log.i("loi", "instance initializer: ");
+        }
+    }
 
     public MessFragment() {
         // Required empty public constructor
+
     }
 
     /**

@@ -1,12 +1,26 @@
 package com.example.spacezandroidjava;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.spacezandroidjava.Model.Contact;
+
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +74,30 @@ public class MessFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mess, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getContext());
+        int userId=pref.getInt("userId",-1);
+        getContact(Integer.toString(userId));
+
+    }
+
+    public void getContact(String id){
+        Call<List<Contact>> listContact=ApiClient.getService().contactResponse(id);
+        listContact.enqueue(new Callback<List<Contact>>() {
+            @Override
+            public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
+                Log.i("contact", "onResponse: ");
+            }
+
+            @Override
+            public void onFailure(Call<List<Contact>> call, Throwable t) {
+
+            }
+        });
+
     }
 }

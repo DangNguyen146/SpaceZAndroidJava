@@ -16,6 +16,8 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/nfc_tag_active"
-        tools:ignore="MissingConstraints"></com.airbnb.lottie.LottieAnimationView>
+        tools:ignore="MissingConstraints">
+
+    </com.airbnb.lottie.LottieAnimationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

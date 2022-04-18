@@ -23,8 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottie"
+                android:id="@+id/lottie2"
                 android:layout_width="215dp"
                 android:layout_height="210dp"
                 android:layout_centerInParent="true"
@@ -34,17 +35,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:lottie_autoPlay="true"
-                app:lottie_rawRes="@raw/nfc_tag_active" />
+                app:lottie_rawRes="@raw/nfc_tag_active"  />
 
             <TextView
                 android:id="@+id/textView12"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="84dp"
-                android:layout_marginTop="228dp"
+                app:layout_constraintTop_toBottomOf="@+id/lottie2"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="@+id/lottie2"
+                app:layout_constraintEnd_toEndOf="@+id/lottie2"
+                android:textColor="@color/white"
+                android:fontFamily="@font/baloo_tamma"
+
                 android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/lottie"
-                app:layout_constraintTop_toTopOf="@+id/lottie" />
+
+
+                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

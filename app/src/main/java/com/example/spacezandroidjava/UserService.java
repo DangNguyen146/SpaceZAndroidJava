@@ -5,8 +5,10 @@ import com.example.spacezandroidjava.Model.AddToCartResponse;
 import com.example.spacezandroidjava.Model.AdjustAmount;
 import com.example.spacezandroidjava.Model.Cart;
 
+import com.example.spacezandroidjava.Model.Contact;
 import com.example.spacezandroidjava.Model.DeleteCartRequest;
 import com.example.spacezandroidjava.Model.DeleteCartResponse;
+
 
 import java.util.List;
 
@@ -34,6 +36,9 @@ public interface UserService {
     Call<DeleteCartResponse> deleteRequest(@Body DeleteCartRequest deleteCartRequest);
     @POST("cart/adjust")
     Call<Object> adjustAmount(@Body AdjustAmount adjustAmount);
+    @GET("message/{id}")
+    Call<List<Contact>> contactResponse(@Path("id") String id);
+
 }
 
 

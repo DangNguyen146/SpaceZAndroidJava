@@ -83,6 +83,11 @@ public class MessFragment extends Fragment {
         int userId=pref.getInt("userId",-1);
         getContact(Integer.toString(userId));
 
+        String userName=pref.getString("userName","unknow");
+        mSocket.connect();
+
+        mSocket.emit("client_send_username",userName);
+
     }
 
     public void getContact(String id){

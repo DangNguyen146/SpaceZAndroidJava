@@ -3,6 +3,7 @@ package com.example.spacezandroidjava;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.nfc.FormatException;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -10,6 +11,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,12 +85,15 @@ public class NFCWriteActivity extends AppCompatActivity {
     }
     private void WriteToNFC(Ndef ndef) {
         ld.HideDialog();
-        try {
+        final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getContext());
+        int userId=pref.getInt("userId",-1);
 
+        try {
+            String part0=Integer.toString(userId)+"|";
             String part1 = username.getText().toString() + "|";
             String part2  = tagName.getText().toString() + "|";
             String part3 = registration_date.getText().toString();
-            String write_msg = part1 + part2 + part3 ;
+            String write_msg = part0 + part1 + part2 + part3 ;
 
             ndef.connect();
             NdefRecord mimeRecord = NdefRecord.createMime("text/plain", write_msg.getBytes(Charset.forName("UTF8")));

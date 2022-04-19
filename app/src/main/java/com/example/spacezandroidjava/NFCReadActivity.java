@@ -19,7 +19,7 @@ import android.widget.Toast;
 import java.io.IOException;
 
 public class NFCReadActivity extends AppCompatActivity {
-
+    int id;
     TextView username;
     TextView tagName;
     TextView registration_date;
@@ -90,10 +90,10 @@ public class NFCReadActivity extends AppCompatActivity {
             tagName = (TextView) findViewById(R.id.w_tagname);
             registration_date = (TextView) findViewById(R.id.w_registration_date);
             imageView = (ImageView) findViewById(R.id.imageView);
-
-            username.setText(dataArr[0]);
-            tagName.setText(dataArr[1]);
-            registration_date.setText(dataArr[2]);
+            id=Integer.parseInt(dataArr[0]);
+            username.setText(dataArr[1]);
+            tagName.setText(dataArr[2]);
+            registration_date.setText(dataArr[3]);
 
             ndef.close();
 

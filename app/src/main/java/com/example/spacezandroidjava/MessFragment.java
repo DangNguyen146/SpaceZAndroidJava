@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -39,16 +41,13 @@ public class MessFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam1;
+    RecyclerView rv;
+    LoadingDialalog loadingDialalog;
     private String mParam2;
-    private Socket mSocket;
-    {
-        try {
-            mSocket = IO.socket("https://nt118.herokuapp.com/");
+    private  ContactAdapter contactAdapter;
 
-        } catch (URISyntaxException e) {
-            Log.i("loi", "instance initializer: ");
-        }
-    }
+
+
 
     public MessFragment() {
         // Required empty public constructor
@@ -94,21 +93,31 @@ public class MessFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getContext());
         int userId=pref.getInt("userId",-1);
+        rv=(RecyclerView) getView().findViewById(R.id.rv_contact);
+         loadingDialalog=new LoadingDialalog(getContext());
+        loadingDialalog.ShowDialog("Chờ xí nhá ");
         getContact(Integer.toString(userId));
 
         String userName=pref.getString("userName","unknow");
-        mSocket.connect();
 
-        mSocket.emit("client_send_username",userName);
 
     }
 
     public void getContact(String id){
-        Call<List<Contact>> listContact=ApiClient.getService().contactResponse(id);
-        listContact.enqueue(new Callback<List<Contact>>() {
+        Call<List<Contact>> contacts=ApiClient.getService().contactResponse(id);
+        contacts.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                Log.i("contact", "onResponse: ");
+
+                List<Contact> lstContact=response.body();
+                loadingDialalog.HideDialog();
+                contactAdapter=new ContactAdapter(lstContact, getActivity());
+                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
+                rv.setAdapter(contactAdapter);
+                rv.setLayoutManager(linearLayoutManager);
+
+
+
             }
 
             @Override

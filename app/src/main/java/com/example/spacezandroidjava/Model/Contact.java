@@ -9,4 +9,5 @@ public class Contact {
     private int id;
     private int user1Id;
     private int user2Id;
+    private  UserContact user;
 }

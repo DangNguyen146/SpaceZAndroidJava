@@ -15,7 +15,7 @@ public class ApiClient {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://nt118.herokuapp.com/api/v1/")
+                .baseUrl("http://192.168.1.9:3000/api/v1/")
                 .client(okHttpClient)
                 .build();
 

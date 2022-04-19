@@ -4,7 +4,7 @@
     package="com.example.spacezandroidjava">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.NFC" />
 
     <application
         android:allowBackup="true"
@@ -13,8 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SpaceZAndroidJava"
+        android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustPan"
         tools:replace="android:theme">
+        <activity
+            android:name=".ChatRoomActivity"
+            android:exported="false" />
         <activity
             android:name=".PaymentDetails"
             android:exported="false" />
@@ -50,24 +54,24 @@
         </activity>
         <activity android:name=".LottieAnimation" />
         <activity android:name=".MainActivity" />
-
-        <activity android:name=".NFCReadActivity" android:exported="false">
+        <activity
+            android:name=".NFCReadActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".NFCWriteActivity" android:exported="false">
+        <activity
+            android:name=".NFCWriteActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
 
         <meta-data
             android:name="preloaded_fonts"

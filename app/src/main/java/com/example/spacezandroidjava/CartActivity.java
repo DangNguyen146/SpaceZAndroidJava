@@ -2,6 +2,7 @@ package com.example.spacezandroidjava;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,17 +13,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.spacezandroidjava.Model.Cart;
 import com.example.spacezandroidjava.Model.DeleteCartRequest;
 import com.example.spacezandroidjava.Model.DeleteCartResponse;
 import com.example.spacezandroidjava.Model.Product;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -43,6 +47,14 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        MaterialToolbar topAppBar=(MaterialToolbar) findViewById(R.id.topAppBar);
+        topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(getApplicationContext(),"your icon was clicked", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         rv= (RecyclerView) findViewById(R.id.cart_lv);
         listProduct=new ArrayList<>();
 

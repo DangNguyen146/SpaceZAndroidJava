@@ -13,6 +13,7 @@ public class LoginRespon implements Serializable {
     private  String mess;
     private String firstName;
     private String lastName;
+    private  String userName;
 
 
 }

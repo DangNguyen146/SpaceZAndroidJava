@@ -2,6 +2,8 @@ package com.example.spacezandroidjava;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,8 @@ import retrofit2.Response;
 public class ContactAdapter extends  RecyclerView.Adapter<ContactAdapter.ViewHolder>  {
     private List<Contact> lstContact;
     private Context context;
+    String username;
+    int userId;
     public ContactAdapter(List<Contact> lstContact,Context context){
         this.lstContact=lstContact;
         this.context=context;
@@ -64,9 +68,13 @@ public class ContactAdapter extends  RecyclerView.Adapter<ContactAdapter.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(context);
+         userId=pref.getInt("userId",-1);
         Contact contact=lstContact.get(position);
-        holder.contactUsername.setText(contact.getUser().getUsername());
+        username=contact.getUser2().getId()!=userId?contact.getUser2().getUsername():contact.getUser1().getUsername();
+        holder.contactUsername.setText(username);
         holder.c=contact;
+        holder.username=username;
 //        holder.name.setText(product.getName());
 //
 //        holder.price.setText("Giá:"+ product.getPrice().toString());
@@ -82,6 +90,8 @@ public class ContactAdapter extends  RecyclerView.Adapter<ContactAdapter.ViewHol
         TextView contactUsername;
         Contact c;
         Context context;
+        String username;
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -101,7 +111,7 @@ public class ContactAdapter extends  RecyclerView.Adapter<ContactAdapter.ViewHol
         public void onClick(View view) {
             Log.i("chat", "onClick: ");
             Intent i=new Intent(context,ChatRoomActivity.class);
-            context.startActivity(i.putExtra("roomId",c.getId()));
+            context.startActivity(i.putExtra("roomId",c.getId()).putExtra("username",username));
         }
 
 

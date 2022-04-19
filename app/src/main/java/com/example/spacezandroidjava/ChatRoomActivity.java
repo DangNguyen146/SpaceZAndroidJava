@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.spacezandroidjava.Model.Message;
 import com.paypal.android.sdk.ed;
 
 import org.json.JSONException;
@@ -33,8 +37,8 @@ import io.socket.emitter.Emitter;
 public class ChatRoomActivity extends AppCompatActivity {
 //    RecyclerView rvChat;
     ListView rvChat;
-    List<String> listMessage;
-    ArrayAdapter arrayAdapter;
+    List<Message> listMessage;
+    MessageAdapter arrayAdapter;
     private Context context;
     private  MessageAdapter messageAdapter;
     private Emitter.Listener sendMessageToClient= new Emitter.Listener() {
@@ -47,14 +51,16 @@ public class ChatRoomActivity extends AppCompatActivity {
                     JSONObject data = (JSONObject) args[0];
 
                     String message;
+                    String username;
                     try {
                         message=data.getString("message");
+                        username=data.getString("username");
 //                        rvChat=(RecyclerView) findViewById(R.id.lv_chat);
 
 //                        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplication());
 
 //                        rvChat.setLayoutManager(linearLayoutManager);
-                        listMessage.add(message);
+                        listMessage.add(new Message(username,message));
                         arrayAdapter.notifyDataSetChanged();
 
 
@@ -100,23 +106,29 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+        final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String userName=pref.getString("userName","user");
         ImageButton sendBtn=(ImageButton) findViewById(R.id.send);
-        listMessage=new ArrayList<String>();
+        TextView tvUserChat=(TextView) findViewById(R.id.chat_username);
+
+        listMessage=new ArrayList<Message>();
         rvChat=(ListView) findViewById(R.id.lv_chat);
-        arrayAdapter=new ArrayAdapter<String>(getApplication(), android.R.layout.simple_list_item_1,listMessage);
+        arrayAdapter=new MessageAdapter(this,R.layout.activity_chat_room,listMessage);
         rvChat.setAdapter(arrayAdapter);
         mSocket.connect();
         Intent i=getIntent();
         edChat=(EditText) findViewById(R.id.chat_box);
          int roomId=i.getIntExtra("roomId",-1);
+        String username=i.getStringExtra("username");
+        tvUserChat.setText(username);
         if(roomId!= -1)
             mSocket.emit("join_room",roomId);
         mSocket.on("send_message_to_client",sendMessageToClient);
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSocket.emit("send_message_to_server",edChat.getText().toString());
-                        edChat.setText("");
+                mSocket.emit("send_message_to_server", userName,edChat.getText().toString());
+                edChat.setText("");
             }
         });
 //        edChat.setOnTouchListener(new View.OnTouchListener() {

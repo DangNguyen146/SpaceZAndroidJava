@@ -270,17 +270,17 @@ public class RegisterScreen extends AppCompatActivity {
                 if (test==true){
                     loadingDialalog.ShowDialog("Đang tải...");
                     RegisterRequest registerRequest = new RegisterRequest();
-//                    registerRequest.setEmail(email);
-//                    registerRequest.setLastName(lastname);
-//                    registerRequest.setFirstName(name);
-//                    registerRequest.setUsername(username);
-//                    registerRequest.setPassword(pass);
+                    registerRequest.setEmail(email);
+                    registerRequest.setLastName(lastname);
+                    registerRequest.setFirstName(name);
+                    registerRequest.setUsername(username);
+                    registerRequest.setPassword(pass);
 
-                    registerRequest.setEmail("blacksonia.note@gmail.com");
-                    registerRequest.setLastName("nguyen");
-                    registerRequest.setFirstName("dang");
-                    registerRequest.setUsername("dangnguyen");
-                    registerRequest.setPassword("1234");
+//                    registerRequest.setEmail("blacksonia.note@gmail.com");
+//                    registerRequest.setLastName("nguyen");
+//                    registerRequest.setFirstName("dang");
+//                    registerRequest.setUsername("dangnguyen");
+//                    registerRequest.setPassword("1234");
                     register(registerRequest);
                 }
             }

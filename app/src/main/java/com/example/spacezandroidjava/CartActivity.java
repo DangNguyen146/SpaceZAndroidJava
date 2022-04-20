@@ -43,6 +43,7 @@ public class CartActivity extends AppCompatActivity {
     TextView tv_total;
     LoadingDialalog loadingDialalog;
     Button btnPay;
+    int total;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +72,7 @@ public class CartActivity extends AppCompatActivity {
             btnPay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(i);
+                    startActivity(i.putExtra("total",total));
                 }
             });
 
@@ -92,7 +93,7 @@ public class CartActivity extends AppCompatActivity {
                 cartAdapter=new CartAdapter(myProductCart,getApplicationContext(),tv_total);
                 rv.setAdapter(cartAdapter);
                 rv.setLayoutManager(gridLayoutManager);
-                int total= cartAdapter.calculateTotal();
+                 total= cartAdapter.calculateTotal();
 
                 tv_total.setText(Integer.toString(total)+" đ");
 

@@ -35,7 +35,7 @@ public class PaymentActivity extends AppCompatActivity {
            .clientId(Config.PAYPAL_CLIENT_ID);
     TextView btnPay;
     EditText edAmount;
-    String amount="";
+    int amount;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,9 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void processPayment() {
-        amount=edAmount.getText().toString();
+        Intent in=getIntent();
+        amount=in.getIntExtra("total",1);
+//        amount=edAmount.getText().toString();
         PayPalPayment payPalPayment=new PayPalPayment(new BigDecimal(1),"USD","buy something",PayPalPayment.PAYMENT_INTENT_SALE);
         Intent i=new Intent(this, com.paypal.android.sdk.payments.PaymentActivity.class);
         i.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);

@@ -32,21 +32,12 @@
                 android:src="@drawable/logo" />
 
 
-            <TextView
-                android:id="@+id/logo_text"
-                android:layout_width="0dp"
-
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/baloo_tamma"
-
-                android:text="spaceZ"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="50sp">
-
-            </TextView>
+                android:src="@drawable/logotext" />
 
             <ImageView
                 android:id="@+id/cart_btn"

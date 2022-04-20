@@ -13,6 +13,7 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -106,17 +107,21 @@ public class NFCReadActivity extends AppCompatActivity {
             ndef.close();
             final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             int user1Id=pref.getInt("userId",-1);
-            ApiClient.getService().createContactRequest(new CreateContactRequest(user1Id,user2Id)).enqueue(new Callback<String>() {
+              Call<String> message= ApiClient.getService().createContactRequest(new CreateContactRequest(user1Id,user2Id));
+
+            message.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-
+                    Log.i("success", "onResponse: ");
                 }
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-
+                    Log.i("failed", "onFailure: ");
                 }
             });
+
+
 
 
         } catch (IOException | FormatException e) {

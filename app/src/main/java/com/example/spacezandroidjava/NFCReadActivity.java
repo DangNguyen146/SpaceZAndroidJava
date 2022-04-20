@@ -5,21 +5,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.nfc.FormatException;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.spacezandroidjava.Model.CreateContactRequest;
+
 import java.io.IOException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class NFCReadActivity extends AppCompatActivity {
-    int id;
+    int user2Id;
     TextView username;
     TextView tagName;
     TextView registration_date;
@@ -86,16 +94,30 @@ public class NFCReadActivity extends AppCompatActivity {
             String data = new String(ndefMessage.getRecords()[0].getPayload());
             data = data.replace("\u0002vi", "");
             String [] dataArr = data.split("\\|");
-            username = (TextView) findViewById(R.id.w_username);
-            tagName = (TextView) findViewById(R.id.w_tagname);
-            registration_date = (TextView) findViewById(R.id.w_registration_date);
+            username = (TextView) findViewById(R.id.tv_username);
+            tagName = (TextView) findViewById(R.id.tv_tagname);
+            registration_date = (TextView) findViewById(R.id.tv_registration_date);
             imageView = (ImageView) findViewById(R.id.imageView);
-            id=Integer.parseInt(dataArr[0]);
+            user2Id=Integer.parseInt(dataArr[0]);
             username.setText(dataArr[1]);
             tagName.setText(dataArr[2]);
             registration_date.setText(dataArr[3]);
 
             ndef.close();
+            final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            int user1Id=pref.getInt("userId",-1);
+            ApiClient.getService().createContactRequest(new CreateContactRequest(user1Id,user2Id)).enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+
+                }
+            });
+
 
         } catch (IOException | FormatException e) {
             e.printStackTrace();

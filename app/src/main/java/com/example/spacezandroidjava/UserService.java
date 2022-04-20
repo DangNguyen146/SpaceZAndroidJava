@@ -6,6 +6,7 @@ import com.example.spacezandroidjava.Model.AdjustAmount;
 import com.example.spacezandroidjava.Model.Cart;
 
 import com.example.spacezandroidjava.Model.Contact;
+import com.example.spacezandroidjava.Model.CreateContactRequest;
 import com.example.spacezandroidjava.Model.DeleteCartRequest;
 import com.example.spacezandroidjava.Model.DeleteCartResponse;
 
@@ -38,6 +39,9 @@ public interface UserService {
     Call<Object> adjustAmount(@Body AdjustAmount adjustAmount);
     @GET("message/{id}")
     Call<List<Contact>> contactResponse(@Path("id") String id);
+    @POST("message/create")
+    Call<String> createContactRequest(@Body CreateContactRequest createContactRequest);
+
 
 }
 

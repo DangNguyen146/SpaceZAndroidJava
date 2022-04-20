@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new NFCFragment();
                         break;
                     case 3:
-                        fragment = new ProfileFragment();
+
+
                         break;
                     case 4:
                         fragment = new MessFragment();
@@ -87,6 +88,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment) {
+        if(fragment==null){
+            Intent i=getApplicationContext().getPackageManager().getLaunchIntentForPackage("com.spacez");
+            startActivity(i);
+
+            return;
+
+        }
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frame_layout,fragment).commit();

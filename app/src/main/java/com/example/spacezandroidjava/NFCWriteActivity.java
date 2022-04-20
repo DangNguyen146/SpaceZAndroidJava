@@ -85,7 +85,7 @@ public class NFCWriteActivity extends AppCompatActivity {
     }
     private void WriteToNFC(Ndef ndef) {
         ld.HideDialog();
-        final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getContext());
+        final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int userId=pref.getInt("userId",-1);
 
         try {

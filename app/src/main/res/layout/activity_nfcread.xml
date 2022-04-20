@@ -79,29 +79,28 @@
                 android:layout_height="wrap_content"
                 android:text="Nội dung"></TextView>
 
-            <EditText
-                android:id="@+id/w_username"
+            <TextView
+                android:id="@+id/tv_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Tên người dùng" />
 
-            <EditText
-                android:id="@+id/w_tagname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Tên thẻ" />
+                 />
 
-            <EditText
-                android:id="@+id/w_registration_date"
+            <TextView
+                android:id="@+id/tv_tagname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Ngày đăng kí thẻ" />
+                />
+
+            <TextView
+                android:id="@+id/tv_registration_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+
+                 />
 
         </LinearLayout>
 

@@ -94,7 +94,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Socket mSocket;
     {
         try {
-            mSocket = IO.socket("http://192.168.1.9:3000/");
+            mSocket = IO.socket("http://192.168.3.1:3000/");
 
         } catch (URISyntaxException e) {
             Log.i("loi", "instance initializer: ");

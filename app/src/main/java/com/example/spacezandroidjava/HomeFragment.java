@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Retrofit retrofit=new Retrofit.Builder().baseUrl("https://nt118.herokuapp.com/api/v1/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit=new Retrofit.Builder().baseUrl("https://spacezuit.herokuapp.com/api/v1/").addConverterFactory(GsonConverterFactory.create()).build();
         JsonPlaceHolderApi jsonPlaceHolderApi=retrofit.create(JsonPlaceHolderApi.class);
         Call<List<Product>> call=jsonPlaceHolderApi.getProduct();
         call.enqueue(new Callback<List<Product>>() {

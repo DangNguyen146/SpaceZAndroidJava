@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SpaceZAndroidJava"
-        android:usesCleartextTraffic="true"
+
         android:windowSoftInputMode="adjustPan"
         tools:replace="android:theme">
 

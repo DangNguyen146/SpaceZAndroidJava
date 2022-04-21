@@ -94,7 +94,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Socket mSocket;
     {
         try {
-            mSocket = IO.socket("http://192.168.137.1:3000/");
+            mSocket = IO.socket("https://spacezuit.herokuapp.com/");
 
         } catch (URISyntaxException e) {
             Log.i("loi", "instance initializer: ");

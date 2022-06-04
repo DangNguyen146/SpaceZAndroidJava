@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.spacezandroidjava.Model.Contact;
 
@@ -45,6 +46,7 @@ public class MessFragment extends Fragment {
     LoadingDialalog loadingDialalog;
     private String mParam2;
     private  ContactAdapter contactAdapter;
+
 
 
 
@@ -94,6 +96,7 @@ public class MessFragment extends Fragment {
         final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getContext());
         int userId=pref.getInt("userId",-1);
         rv=(RecyclerView) getView().findViewById(R.id.rv_contact);
+
          loadingDialalog=new LoadingDialalog(getContext());
         loadingDialalog.ShowDialog("Chờ xí nhá ");
         getContact(Integer.toString(userId));

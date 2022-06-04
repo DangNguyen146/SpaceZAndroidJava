@@ -94,6 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Tài khoản"
+                    android:fontFamily="@font/baloo_tamma"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -106,23 +107,26 @@
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/imageView11"
+
+                            android:id="@+id/setting_avatar"
                             android:layout_width="66dp"
-                            android:layout_height="64dp"
-                            android:src="@drawable/ic_send"
+                            android:layout_height="66dp"
+
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView10"
+                            android:id="@+id/setting_username"
+                            android:textColor="@color/black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nguyễn Khải Đăng"
+                            android:fontFamily="@font/baloo_tamma"
+                            android:textSize="30sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.071"
-                            app:layout_constraintStart_toEndOf="@+id/imageView11"
+                            app:layout_constraintStart_toEndOf="@+id/setting_avatar"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.511" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -144,10 +148,13 @@
                             android:src="@drawable/ic_baseline_account_circle_24" />
 
                         <TextView
-                            android:id="@+id/textView14"
+                            android:id="@+id/setting_changeInfo"
+                            android:textSize="16sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Đổi thông tin cá nhân"
+                            android:clickable="true"
+                            android:fontFamily="@font/baloo_tamma"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.12"
                             app:layout_constraintStart_toEndOf="@+id/imageView10"
@@ -177,9 +184,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Đổi mật khẩu"
+                            android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.097"
+                            android:fontFamily="@font/baloo_tamma"
                             app:layout_constraintStart_toEndOf="@+id/imageView12" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -221,6 +230,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Chung"
+                    android:fontFamily="@font/baloo_tamma"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -243,8 +253,10 @@
                         <TextView
                             android:id="@+id/textView17"
                             android:layout_width="wrap_content"
+                            android:textSize="16sp"
                             android:layout_height="wrap_content"
                             android:text="Thông báo"
+                            android:fontFamily="@font/baloo_tamma"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.05"
@@ -275,6 +287,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Bảo mật"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/baloo_tamma"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.05"
@@ -305,8 +319,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Đánh giá"
+                            android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            android:fontFamily="@font/baloo_tamma"
                             app:layout_constraintHorizontal_bias="0.05"
                             app:layout_constraintStart_toEndOf="@+id/imageView16" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -335,6 +351,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Chia sẻ ứng dụng"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/baloo_tamma"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.05"
@@ -358,6 +376,7 @@
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_baseline_account_circle_24"
                             app:layout_constraintStart_toStartOf="parent"
+
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
@@ -365,6 +384,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Điều khoảng sử dụng"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/baloo_tamma"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.05"
@@ -404,6 +425,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Liên hệ chúng tôi"
+                    android:fontFamily="@font/baloo_tamma"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -427,6 +449,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Trợ giúp"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/baloo_tamma"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.06"
                             app:layout_constraintStart_toEndOf="@+id/imageView19"
@@ -457,7 +481,9 @@
                             android:id="@+id/textView25"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:textSize="16sp"
+                            android:text="Đăng xuất"
+                            android:fontFamily="@font/baloo_tamma"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.056"

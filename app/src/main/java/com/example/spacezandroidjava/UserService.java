@@ -5,6 +5,8 @@ import com.example.spacezandroidjava.Model.AddToCartResponse;
 import com.example.spacezandroidjava.Model.AdjustAmount;
 import com.example.spacezandroidjava.Model.Cart;
 
+import com.example.spacezandroidjava.Model.ChangeUserInformationRequest;
+import com.example.spacezandroidjava.Model.ChangeUserInformationRespone;
 import com.example.spacezandroidjava.Model.Contact;
 import com.example.spacezandroidjava.Model.CreateContactRequest;
 import com.example.spacezandroidjava.Model.DeleteCartRequest;
@@ -22,6 +24,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -53,9 +56,11 @@ public interface UserService {
     @Multipart
     @POST("user/upload-avatar")
 
-    Call<UploadAvatarResponse> uploadAvatar(
+    Call<UploadAvatarResponse> uploadAvatar(@Header("token") String token,
             @Part MultipartBody.Part file
             );
+    @POST("user/update")
+    Call<ChangeUserInformationRespone> changeUserInformation(@Header("token") String token, @Body ChangeUserInformationRequest changeUserInformationRequest);
 
 
 }

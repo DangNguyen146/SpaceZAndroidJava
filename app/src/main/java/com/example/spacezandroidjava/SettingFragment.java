@@ -3,11 +3,13 @@ package com.example.spacezandroidjava;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -43,7 +45,7 @@ public class SettingFragment extends Fragment {
     private ImageView iv_avatar;
     private LoadingDialalog loadingDialalog;
     private TextView tv_changeSetting;
-
+    private int userId;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -89,16 +91,28 @@ public class SettingFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Context context=getActivity();
         final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(context);
-        int userId=pref.getInt("userId",-1);
+         this.userId=pref.getInt("userId",-1);
         tv_username=(TextView) getView().findViewById(R.id.setting_username);
         tv_changeSetting=(TextView) getView().findViewById(R.id.setting_changeInfo);
         iv_avatar=(ImageView) getView().findViewById(R.id.setting_avatar);
         loadingDialalog =new LoadingDialalog(getContext());
         loadingDialalog.ShowDialog("Let's find who you are");
         getUserInfo(Integer.toString(userId));
-        Log.i("stop", "onViewCreated: ");
+
+
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        if (Build.VERSION.SDK_INT >= 26) {
+//            ft.setReorderingAllowed(false);
+//        }
+//        ft.detach(this).attach(this).commit();
+    }
+
     public void getUserInfo(String id){
 
        Call<UserInformation> userInformationCall= ApiClient.getService().getUserInformationResponse(id);
@@ -116,6 +130,7 @@ public class SettingFragment extends Fragment {
                    public void onClick(View view) {
                        Intent i=new Intent(getActivity(),ChangeUserInformationActivity.class);
                        startActivity(i.putExtra("userInfo",userInformation));
+
                    }
                });
 
@@ -127,6 +142,7 @@ public class SettingFragment extends Fragment {
 
            }
        });
+
 
     }
 }

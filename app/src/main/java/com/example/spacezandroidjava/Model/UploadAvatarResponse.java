@@ -10,5 +10,5 @@ import lombok.Setter;
 public class UploadAvatarResponse {
     private String avartar;
     private Long id;
-    private LocalDateTime updatedAt;
+//    private LocalDateTime updatedAt;
 }

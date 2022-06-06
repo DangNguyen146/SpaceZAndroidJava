@@ -5,29 +5,151 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:paddingTop="10dp"
-    android:paddingHorizontal="5dp"
+
+
+
     tools:context=".ChangeUserInformationActivity">
-<ImageView
-    android:id="@+id/iv_changeUserInfo"
-    android:layout_width="140dp"
-    android:layout_height="140dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:paddingVertical="10dp"
-    android:clickable="true"
-    />
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:background="@drawable/sau_1"
+        android:id="@+id/image_container"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+    android:paddingVertical="20dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+
+            android:id="@+id/image_wrapper"
+            android:layout_width="150dp"
+            android:layout_marginVertical="80dp"
+            android:background="@drawable/circle"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="150dp">
+
+            <ImageView
+                android:id="@+id/iv_changeUserInfo"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+
+
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:paddingVertical="10dp"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/input_container"
+    android:layout_width="match_parent"
+    app:layout_constraintTop_toBottomOf="@+id/image_container"
+
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="40dp"
+
+    android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ScrollView>
+    <TextView
+        android:id="@+id/tv_username_change"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:fontFamily="@font/baloo_tamma"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_container"
+        />
     <EditText
         android:id="@+id/et_changeUserInfoName"
         android:background="@drawable/ed_border"
-        android:fontFamily="@font/baloo_tamma"
-        app:layout_constraintTop_toBottomOf="@+id/iv_changeUserInfo"
+        android:fontFamily="@font/baloo_paaji_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username_change"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:paddingHorizontal="10dp"
+        android:textStyle="italic"
+
         />
+    <TextView
+        android:id="@+id/tv_firstName_change"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FirstName"
+        android:fontFamily="@font/baloo_tamma"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_changeUserInfoName"/>
+    <EditText
+        android:id="@+id/et_changeFirstname_change"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="@+id/et_changeUserInfoName"
+        app:layout_constraintTop_toBottomOf="@+id/tv_firstName_change"
+        android:background="@drawable/ed_border"
+        android:paddingHorizontal="10dp"
+        android:textStyle="italic"/>
+    <TextView
+        android:id="@+id/tv_lastName_change"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LastName"
+        android:fontFamily="@font/baloo_tamma"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_changeFirstname_change"/>
+    <EditText
+        android:id="@+id/et_changeLastname_change"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="@+id/et_changeUserInfoName"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lastName_change"
+        android:background="@drawable/ed_border"
+        android:paddingHorizontal="10dp"
+        android:textStyle="italic"/>
+    <TextView
+        android:id="@+id/tv_email_change"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email"
+        android:fontFamily="@font/baloo_tamma"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_changeLastname_change"/>
+    <EditText
+        android:id="@+id/et_email_change"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="@+id/et_changeUserInfoName"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email_change"
+        android:background="@drawable/ed_border"
+        android:paddingHorizontal="10dp"
+        android:textStyle="italic"/>
+
+    <Button
+        android:id="@+id/setting_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thay đổi"
+        android:paddingVertical="10dp"
+        android:fontFamily="@font/baloo_tamma"
+        app:layout_constraintTop_toBottomOf="@id/et_email_change"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

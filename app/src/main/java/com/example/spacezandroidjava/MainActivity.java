@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             savePrefFistNameLastName(loginRespon.getFirstName(),loginRespon.getLastName());
             savePrefUserId(loginRespon.getUserId());
             savePrefUsername(loginRespon.getUserName());
+            savePrefToken(loginRespon.getToken());
         }
 
         //assign variable
@@ -123,6 +124,14 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor=pref.edit();
         editor.putString("userName",userName);
+
+        editor.commit();
+
+    }
+    private void savePrefToken(String token){
+        SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor=pref.edit();
+        editor.putString("token",token);
 
         editor.commit();
 

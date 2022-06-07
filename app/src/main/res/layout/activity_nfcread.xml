@@ -75,32 +75,53 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvnd"
+                android:id="@+id/lb_tagname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/baloo_tamma"
-                android:text="Nội dung"></TextView>
+                android:textSize="20dp"
+                android:text="Tên thẻ"></TextView>
+
+            <TextView
+                android:id="@+id/tv_tagname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:fontFamily="@font/baloo_tamma"
+                />
+
+            <TextView
+                android:id="@+id/lb_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo_tamma"
+                android:textSize="20dp"
+                android:text="Tên tài khoản"></TextView>
 
             <TextView
                 android:id="@+id/tv_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textSize="15dp"
+                android:fontFamily="@font/baloo_tamma"
                  />
 
             <TextView
-                android:id="@+id/tv_tagname"
+                android:id="@+id/lb_registration_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                />
+                android:fontFamily="@font/baloo_tamma"
+                android:textSize="20dp"
+                android:text="Ngày đăng kí thẻ"></TextView>
 
             <TextView
                 android:id="@+id/tv_registration_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo_tamma"
                 android:ems="10"
-
+                android:textSize="15dp"
                  />
 
         </LinearLayout>

@@ -16,10 +16,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.spacezandroidjava.Model.Message;
 import com.paypal.android.sdk.ed;
 
@@ -52,9 +54,11 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                     String message;
                     String username;
+
                     try {
                         message=data.getString("message");
                         username=data.getString("username");
+
 //                        rvChat=(RecyclerView) findViewById(R.id.lv_chat);
 
 //                        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplication());
@@ -110,15 +114,19 @@ public class ChatRoomActivity extends AppCompatActivity {
         String userName=pref.getString("userName","user");
         ImageButton sendBtn=(ImageButton) findViewById(R.id.send);
         TextView tvUserChat=(TextView) findViewById(R.id.chat_username);
+        ImageView imageView=(ImageView) findViewById(R.id.avatar);
 
         listMessage=new ArrayList<Message>();
         rvChat=(ListView) findViewById(R.id.lv_chat);
         arrayAdapter=new MessageAdapter(this,R.layout.activity_chat_room,listMessage);
+
         rvChat.setAdapter(arrayAdapter);
         mSocket.connect();
         Intent i=getIntent();
         edChat=(EditText) findViewById(R.id.chat_box);
          int roomId=i.getIntExtra("roomId",-1);
+         String userAvatar=i.getStringExtra("userAvatar");
+         Glide.with(this).load(userAvatar).circleCrop().into(imageView);
         String username=i.getStringExtra("username");
         tvUserChat.setText(username);
         if(roomId!= -1)

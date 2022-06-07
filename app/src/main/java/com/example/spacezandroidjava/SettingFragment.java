@@ -123,7 +123,7 @@ public class SettingFragment extends Fragment {
 
 
               tv_username.setText(userInformation.getUserName());
-               Glide.with(getActivity()).load(userInformation.getAvartar()).into(iv_avatar);
+               Glide.with(getActivity()).load(userInformation.getAvartar()).circleCrop().into(iv_avatar);
                loadingDialalog.HideDialog();
                tv_changeSetting.setOnClickListener(new View.OnClickListener() {
                    @Override

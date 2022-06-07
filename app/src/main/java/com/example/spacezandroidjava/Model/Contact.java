@@ -11,4 +11,5 @@ public class Contact {
     private int user2Id;
     private  UserContact user1;
     private  UserContact user2;
+
 }

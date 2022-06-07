@@ -8,16 +8,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.spacezandroidjava.Model.AdjustAmount;
 import com.example.spacezandroidjava.Model.Cart;
 import com.example.spacezandroidjava.Model.Contact;
 import com.example.spacezandroidjava.Model.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class ContactAdapter extends  RecyclerView.Adapter<ContactAdapter.ViewHol
     private List<Contact> lstContact;
     private Context context;
     String username;
+    String avatarURL;
     int userId;
     public ContactAdapter(List<Contact> lstContact,Context context){
         this.lstContact=lstContact;
@@ -72,9 +76,14 @@ public class ContactAdapter extends  RecyclerView.Adapter<ContactAdapter.ViewHol
          userId=pref.getInt("userId",-1);
         Contact contact=lstContact.get(position);
         username=contact.getUser2().getId()!=userId?contact.getUser2().getUsername():contact.getUser1().getUsername();
+        avatarURL=contact.getUser2().getId()!=userId?contact.getUser2().getAvartar():contact.getUser1().getAvartar();
         holder.contactUsername.setText(username);
+//        Picasso.get().load(avatarURL).into(holder.userAvatar);
+        Glide.with(context).load(avatarURL).circleCrop().into(holder.userAvatar);
         holder.c=contact;
         holder.username=username;
+        holder.avatarURL=avatarURL;
+
 //        holder.name.setText(product.getName());
 //
 //        holder.price.setText("Giá:"+ product.getPrice().toString());
@@ -89,15 +98,17 @@ public class ContactAdapter extends  RecyclerView.Adapter<ContactAdapter.ViewHol
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView contactUsername;
         Contact c;
+        ImageView userAvatar;
         Context context;
         String username;
+        String avatarURL;
 
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             context=itemView.getContext();
-
+            userAvatar=(ImageView) itemView.findViewById(R.id.message_avatar);
             contactUsername=(TextView) itemView.findViewById(R.id.contact_username);
             itemView.setOnClickListener(this);
 //            name=itemView.findViewById(R.id.card_name_cart);
@@ -111,7 +122,7 @@ public class ContactAdapter extends  RecyclerView.Adapter<ContactAdapter.ViewHol
         public void onClick(View view) {
             Log.i("chat", "onClick: ");
             Intent i=new Intent(context,ChatRoomActivity.class);
-            context.startActivity(i.putExtra("roomId",c.getId()).putExtra("username",username));
+            context.startActivity(i.putExtra("roomId",c.getId()).putExtra("username",username).putExtra("userAvatar",avatarURL));
         }
 
 

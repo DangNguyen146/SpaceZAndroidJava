@@ -8,5 +8,6 @@ import lombok.Setter;
 public class UserContact {
     private  int id;
     private  String username;
+    private String avartar;
 
 }

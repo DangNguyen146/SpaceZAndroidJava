@@ -95,6 +95,11 @@ public class NFCWriteActivity extends AppCompatActivity {
             String part2  = tagName.getText().toString() + "|";
             String part3 = registration_date.getText().toString();
 
+            if(part1.length() < 2 || part2.length() < 2 || part3.length() < 1){
+                Toast.makeText(this, "Error to writting tag.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             String write_msg = part0 + part1 + part2 + part3 ;
 
             ndef.connect();

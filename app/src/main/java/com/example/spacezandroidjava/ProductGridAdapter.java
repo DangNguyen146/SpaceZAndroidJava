@@ -1,6 +1,9 @@
 package com.example.spacezandroidjava;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +11,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.spacezandroidjava.Model.Product;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +36,8 @@ public class ProductGridAdapter extends BaseAdapter {
     private List<Product> lstProduct;
     private  LayoutInflater layoutInflater;
     private Context context;
-    public ProductGridAdapter(Context context,List<Product> lstProduct){
+
+    public ProductGridAdapter(Context context, List<Product> lstProduct){
         this.context=context;
         this.lstProduct=lstProduct;
         layoutInflater = LayoutInflater.from(context);
@@ -63,12 +76,31 @@ public class ProductGridAdapter extends BaseAdapter {
        }
        Product product=this.lstProduct.get(i);
        holder.nameView.setText(product.getName());
-
+//        Glide.with(context).load(product.getImage()).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(holder.productView);
+        Picasso.get().load(product.getImage()).resize(500, 340).centerCrop().into(holder.productView);
+//            holder.productView.setImageResource(R.drawable.sau_1);
+//        holder.productView.setImageBitmap(getBitmapFromURL(product.getImage()));
        return  view;
 
     }
 
-
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            Log.e("src",src);
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            Log.e("Bitmap","returned");
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception",e.getMessage());
+            return null;
+        }
+    }
     static class ViewHolder {
         ImageView productView;
         TextView nameView;

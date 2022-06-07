@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.example.spacezandroidjava.Model.AdjustAmount;
 import com.example.spacezandroidjava.Model.Cart;
 import com.example.spacezandroidjava.Model.Product;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -66,7 +68,7 @@ public class CartAdapter extends  RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.price.setText("Giá:"+ product.getPrice().toString());
         holder.itemView.setTag(product.getId());
         holder.eB.setNumber(Integer.toString(cart.getAmount()) );
-
+        Picasso.get().load(product.getImage()).into(holder.productImage);
         holder.eB.setOnValueChangeListener(
                 new ElegantNumberButton.OnValueChangeListener() {
                     @Override
@@ -123,6 +125,7 @@ public class CartAdapter extends  RecyclerView.Adapter<CartAdapter.ViewHolder> {
         TextView name;
         TextView price;
         Context context;
+        ImageView productImage;
 
         Product p;
         ElegantNumberButton eB;
@@ -136,6 +139,8 @@ public class CartAdapter extends  RecyclerView.Adapter<CartAdapter.ViewHolder> {
             name=itemView.findViewById(R.id.card_name_cart);
             price=itemView.findViewById(R.id.card_price_cart);
             eB=itemView.findViewById(R.id.amount_btn);
+            productImage=itemView.findViewById(R.id.card_img_cart);
+
 
 
 

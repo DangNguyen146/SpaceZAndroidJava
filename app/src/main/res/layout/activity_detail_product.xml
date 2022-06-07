@@ -26,20 +26,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/user_lastName_firstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+<!--        <TextView-->
+<!--            android:id="@+id/user_lastName_firstName"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
 
-            android:clickable="true"
-            android:fontFamily="@font/baloo_tamma"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/product_img"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/product_img"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.647" />
+<!--            android:clickable="true"-->
+<!--            android:fontFamily="@font/baloo_tamma"-->
+<!--            android:textColor="#f7b500"-->
+<!--            android:textSize="25sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/product_img"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/product_img"-->
+
+
+<!--            app:layout_constraintTop_toTopOf="@+id/product_img"-->
+<!--            app:layout_constraintVertical_bias="0.647" />-->
 
 
         <LinearLayout
@@ -74,18 +76,19 @@
                     android:fontFamily="@font/baloo_tamma"
                     android:textSize="14sp"/>
             </LinearLayout>
+
             <Button
                 android:id="@+id/btn_add_to_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_cart_24"
+                android:fontFamily="@font/baloo_tamma"
                 android:text="Chọn mua"
                 android:textSize="15sp"
-                android:layout_marginVertical="10dp"
-                android:fontFamily="@font/baloo_tamma"
-                android:drawableLeft="@drawable/ic_cart_24"
-                android:layout_weight="1"
 
-              />
+                />
 
         </LinearLayout>
         <RelativeLayout

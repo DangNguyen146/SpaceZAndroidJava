@@ -17,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.spacezandroidjava.Model.Product;
 
@@ -45,6 +46,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private GridView gridView;
+
 
     private Context context;
 
@@ -93,6 +95,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         context=this.getContext();
+
         btn_cart=(ImageView) getView().findViewById(R.id.cart_btn);
         gridView=  (GridView) getView().findViewById(R.id.gridView);
         LoadingDialalog loadingDialalog=new LoadingDialalog(getContext());

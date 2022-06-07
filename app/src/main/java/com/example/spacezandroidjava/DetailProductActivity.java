@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ import com.example.spacezandroidjava.Model.Product;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
@@ -47,8 +49,10 @@ public class DetailProductActivity extends AppCompatActivity {
         TextView description_tv=(TextView) findViewById(R.id.product_description);
         RatingBar rate_bar=(RatingBar) findViewById(R.id.rating_btn);
         Button btn_cart=(Button) findViewById(R.id.btn_add_to_cart);
-        TextView username_tv=(TextView) findViewById(R.id.user_lastName_firstName);
-        EditText  editText=new EditText(this);
+//        TextView username_tv=(TextView) findViewById(R.id.user_lastName_firstName);
+//        EditText  editText=new EditText(this);
+        ImageView imageView=(ImageView) findViewById(R.id.product_img);
+
         lstItemCart=new LinkedList<Product>();
         SharedPreferences recvPref=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
@@ -65,18 +69,19 @@ public class DetailProductActivity extends AppCompatActivity {
         int userId=pref.getInt("userId",-1);
         AlertDialog dialog=new AlertDialog.Builder(this).create();
         dialog.setTitle("Nhập nội dung");
-        dialog.setView(editText);
+//        dialog.setView(editText);
         if(intent.getExtras()!=null){
             Product p=(Product) intent.getSerializableExtra("product");
             String name= p.getName();
             Long price=p.getPrice();
+            String imageUrl=p.getImage();
             int rate=p.getRate();
             rate_bar.setRating(rate);
             String description=p.getDescription();
             name_tv.setText(name);
 
             price_tv.setText("Giá: " +price.toString()+" VND");
-
+            Picasso.get().load(imageUrl).into(imageView);
             description_tv.setText(description);
             btn_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -107,18 +112,18 @@ public class DetailProductActivity extends AppCompatActivity {
         dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Thay đổi", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                    username_tv.setText(editText.getText());
+//                    username_tv.setText(editText.getText());
             }
         });
 
-        username_tv.setText(firstName+" "+lastName);
-        username_tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editText.setText(username_tv.getText());
-                dialog.show();
-            }
-        });
+//        username_tv.setText(firstName+" "+lastName);
+//        username_tv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                editText.setText(username_tv.getText());
+//                dialog.show();
+//            }
+//        });
 
 
 

@@ -22,14 +22,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-
                 android:orientation="horizontal"
                 android:paddingHorizontal="5dp">
 
                 <ImageView
                     android:id="@+id/logo"
                     android:layout_width="50dp"
-
                     android:layout_height="50dp"
                     android:contentDescription="@string/logo"
                     android:src="@drawable/logo" />
@@ -42,7 +40,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/baloo_tamma"
-
                     android:text="spaceZ"
                     android:textAlignment="center"
                     android:textAllCaps="true"
@@ -65,49 +62,70 @@
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@+id/nfc_header_container"/>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/textView2"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="5dp">
 
             <TextView
                 android:id="@+id/tvnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nội dung"/>
-
-            <EditText
-                android:id="@+id/w_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Tên người dùng" />
+                android:text="Nội dung"
+                android:fontFamily="@font/baloo_tamma"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/w_tagname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Tên thẻ"
+                android:fontFamily="@font/baloo_tamma"
                 android:inputType="textPersonName"
-                android:hint="Tên thẻ" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvnd"
+                />
+
+            <EditText
+                android:id="@+id/w_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Tên người dùng"
+                android:fontFamily="@font/baloo_tamma"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/w_tagname"
+                 />
 
             <EditText
                 android:id="@+id/w_registration_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Ngày đăng kí thẻ"
+                android:fontFamily="@font/baloo_tamma"
                 android:inputType="textPersonName"
-                android:hint="Ngày đăng kí thẻ" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/w_username"
+                />
 
             <Button
                 android:id="@+id/w_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Ghi thẻ"/>
+                android:text="Ghi thẻ"
+                android:fontFamily="@font/baloo_tamma"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/w_registration_date"/>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

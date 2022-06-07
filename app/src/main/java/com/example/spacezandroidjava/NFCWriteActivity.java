@@ -88,11 +88,13 @@ public class NFCWriteActivity extends AppCompatActivity {
         final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int userId=pref.getInt("userId",-1);
 
+
         try {
-            String part0=Integer.toString(userId)+"|";
+            String part0 = Integer.toString(userId)+"|";
             String part1 = username.getText().toString() + "|";
             String part2  = tagName.getText().toString() + "|";
             String part3 = registration_date.getText().toString();
+
             String write_msg = part0 + part1 + part2 + part3 ;
 
             ndef.connect();

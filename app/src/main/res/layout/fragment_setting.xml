@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/main_header_selector"
             android:paddingBottom="10dp"
-            app:layout_constraintStart_toStartOf="@+id/card_view"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout

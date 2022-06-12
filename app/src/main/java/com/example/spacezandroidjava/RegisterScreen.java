@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +26,7 @@ import okhttp3.OkHttpClient;
 
 public class RegisterScreen extends AppCompatActivity {
     TextView titleSignin, erro;
-    TextInputLayout inputLastName, inputName, inputUserName, inputEmail, inputPassWord, inputComformPassWord;
+    TextInputLayout inputLastName, inputName, inputUserName, inputEmail, inputPassWord, inputComformPassWord,inputPhone;
     Button btnReg;
     LoadingDialalog loadingDialalog;
 
@@ -42,6 +43,8 @@ public class RegisterScreen extends AppCompatActivity {
         inputEmail = (TextInputLayout) findViewById(R.id.textInputLayout8);
         inputPassWord =(TextInputLayout) findViewById(R.id.textInputLayout10);
         inputComformPassWord =(TextInputLayout) findViewById(R.id.textInputLayout11);
+        inputPhone=(TextInputLayout) findViewById(R.id.enter_phone);
+
         loadingDialalog = new LoadingDialalog(this);
 
         titleSignin.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +186,34 @@ public class RegisterScreen extends AppCompatActivity {
 
             }
         });
+        inputPhone.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length()==0){
+                    inputPhone.setError("Chưa nhập số điện thoại");
+                    inputPhone.setErrorEnabled(true);
+                }
+                else if(charSequence.length()<1){
+                    inputPhone.setError("Tối thiểu 1 ký tự");
+                }
+
+
+                else{
+                    inputPhone.setError(null);
+                    inputPhone.setErrorEnabled(false);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         inputComformPassWord.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -224,6 +255,7 @@ public class RegisterScreen extends AppCompatActivity {
                 String email = inputEmail.getEditText().getText().toString().trim();
                 String pass = inputPassWord.getEditText().getText().toString().trim();
                 String comfomPass = inputComformPassWord.getEditText().getText().toString().trim();
+                String phone=inputPhone.getEditText().getText().toString().trim();
 //                if (lastname.isEmpty()) {
 //                    inputLastName.setErrorEnabled(true);
 //                    inputLastName.setError("Chưa nhập họ");
@@ -275,6 +307,7 @@ public class RegisterScreen extends AppCompatActivity {
                     registerRequest.setFirstName(name);
                     registerRequest.setUsername(username);
                     registerRequest.setPassword(pass);
+                    registerRequest.setPhone(phone);
 
 //                    registerRequest.setEmail("blacksonia.note@gmail.com");
 //                    registerRequest.setLastName("nguyen");

@@ -64,5 +64,6 @@ dependencies {
 
     implementation "androidx.activity:activity:1.4.0"
     implementation "com.android.support:support-fragment:26.1.0"
+    implementation 'com.github.aabhasr1:OtpView:v1.1.2'
 
 }

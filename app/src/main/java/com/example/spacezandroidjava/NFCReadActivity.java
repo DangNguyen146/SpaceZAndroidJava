@@ -87,12 +87,43 @@ public class NFCReadActivity extends AppCompatActivity {
             ld.HideDialog();
             Toast.makeText(this, getString(R.string.message_tag_detected), Toast.LENGTH_SHORT).show();
             Ndef ndef = Ndef.get(tag);
-            readFromNFC(ndef);
+                readFromNFC(ndef);
+
+
+
         }
     }
 
     private void readFromNFC(Ndef ndef) {
         ld.HideDialog();
+        if(ndef==null){
+            username = (TextView) findViewById(R.id.tv_username);
+            tagName = (TextView) findViewById(R.id.tv_tagname);
+            registration_date = (TextView) findViewById(R.id.tv_registration_date);
+            imageView = (ImageView) findViewById(R.id.imageView);
+            user2Id=164;
+            username.setText("demo");
+            tagName.setText("demo");
+            registration_date.setText("6/8/2022");
+            final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            int user1Id=pref.getInt("userId",-1);
+            Call<String> message= ApiClient.getService().createContactRequest(new CreateContactRequest(user1Id,user2Id));
+
+            message.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+
+
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Log.i("failed", "onFailure: ");
+                }
+            });
+
+            return;
+        }
         try {
             ndef.connect();
             NdefMessage ndefMessage = ndef.getNdefMessage();
@@ -131,6 +162,8 @@ public class NFCReadActivity extends AppCompatActivity {
 
         } catch (IOException | FormatException e) {
             e.printStackTrace();
+
+
         }
     }
 //    private void createNotificationChannel() {

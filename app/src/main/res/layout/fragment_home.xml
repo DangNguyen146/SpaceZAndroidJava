@@ -65,9 +65,11 @@
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/search_border"
             android:drawableStart="@drawable/ic_baseline_search_24"
+            android:focusableInTouchMode="false"
             android:hint="tìm kiếm danh mục,sản phẩm"
             android:inputType="text"
             android:padding="8dp"
+
 
             android:textColor="@color/white"
             android:textColorHint="@color/white"

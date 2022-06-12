@@ -6,11 +6,18 @@ public class RegisterRequest {
     private String email;
     private String password;
     private String username;
+    private String phone;
 
     public String getFirstName() {
         return firstName;
     }
+    public void setPhone(String phone){
+        this.phone=phone;
 
+    }
+    public String getPhone(){
+        return this.phone;
+    }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

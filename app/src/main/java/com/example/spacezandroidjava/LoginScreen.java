@@ -123,7 +123,13 @@ public class LoginScreen extends AppCompatActivity {
             public void onResponse(Call<LoginRespon> call, Response<LoginRespon> response) {
                 if (response.isSuccessful()){
                     LoginRespon loginRespon=response.body();
-                    startActivity(new Intent(LoginScreen.this,MainActivity.class).putExtra("data",loginRespon));
+                    if(loginRespon.getMess().equals("Verification is sent!!")){
+                        startActivity(new Intent(LoginScreen.this,VerifyCodeActivity.class).putExtra("data",loginRespon));
+                    }
+                    else{
+                        startActivity(new Intent(LoginScreen.this,MainActivity.class).putExtra("data",loginRespon));
+                    }
+
                     finish();
 
                 }else{

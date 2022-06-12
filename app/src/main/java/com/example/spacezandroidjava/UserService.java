@@ -13,6 +13,8 @@ import com.example.spacezandroidjava.Model.DeleteCartRequest;
 import com.example.spacezandroidjava.Model.DeleteCartResponse;
 import com.example.spacezandroidjava.Model.UploadAvatarResponse;
 import com.example.spacezandroidjava.Model.UserInformation;
+import com.example.spacezandroidjava.Model.VerifyCodeRequest;
+import com.example.spacezandroidjava.Model.VerifyCodeResponse;
 
 
 import java.util.List;
@@ -61,7 +63,8 @@ public interface UserService {
             );
     @POST("user/update")
     Call<ChangeUserInformationRespone> changeUserInformation(@Header("token") String token, @Body ChangeUserInformationRequest changeUserInformationRequest);
-
+    @POST("user/verify")
+    Call<VerifyCodeResponse> verifyCode(@Body VerifyCodeRequest verifyCodeRequest);
 
 }
 

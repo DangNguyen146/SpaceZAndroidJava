@@ -19,9 +19,10 @@
         android:text="Bạn đã có tài khoản?"
         android:textColor="@color/intro_description_color"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toStartOf="@+id/titleLogin"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout11" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        app:layout_constraintStart_toStartOf="@+id/btnRegister" />
 
     <TextView
         android:id="@+id/titleLogin"
@@ -34,7 +35,7 @@
         android:text="Đăng nhập"
         android:textColor="@color/gradiant_start_color"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnRegister"
         app:layout_constraintEnd_toEndOf="@+id/btnRegister"
         app:layout_constraintStart_toStartOf="@+id/textView8" />
 
@@ -50,23 +51,7 @@
         app:srcCompat="@drawable/logo" />
 
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:backgroundTint="@color/gradiant_end_color"
-        android:text="Đăng ký"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout11"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout11"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout11"
-        app:layout_constraintVertical_bias="0.547" />
+
 
     <TextView
         android:id="@+id/textView6"
@@ -305,6 +290,62 @@
             android:textColorHint="#FFFFFF"
             tools:ignore="TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/enter_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColorHint="#00FFFFFF"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxStrokeColor="#00FFFFFF"
+        app:boxStrokeErrorColor="#00FFFFFF"
+        app:errorEnabled="false"
+        app:errorTextColor="#FF007A"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
+        app:hintTextColor="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout10"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout10"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout11"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_bg"
+            android:drawableStart="@android:drawable/ic_lock_idle_lock"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/baloo_paaji_2"
+            android:hint="Nhập số điện thoại"
+            android:inputType="number"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#00BCD4"
+            android:textColorHint="#FFFFFF"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:backgroundTint="@color/gradiant_end_color"
+            android:text="Đăng ký"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+
+            app:layout_constraintHorizontal_bias="0.0"
+
+            app:layout_constraintVertical_bias="0.547"
+            app:layout_constraintTop_toBottomOf="@+id/enter_phone"
+            app:layout_constraintStart_toStartOf="@+id/enter_phone"
+            app:layout_constraintEnd_toEndOf="@+id/enter_phone"
+            />
 
     <TextView
         android:id="@+id/erroRegister"
@@ -314,10 +355,10 @@
         android:fontFamily="@font/baloo_tamma"
         android:textColor="#FF007A"
         android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+
         app:layout_constraintEnd_toEndOf="@+id/btnRegister"
         app:layout_constraintStart_toStartOf="@+id/btnRegister"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout11" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

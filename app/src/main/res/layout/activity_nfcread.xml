@@ -72,6 +72,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/textView2"
             android:paddingVertical="20px"
+            android:paddingHorizontal="5dp"
             android:orientation="vertical">
 
             <TextView
@@ -86,6 +87,7 @@
                 android:id="@+id/tv_tagname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="5dp"
                 android:textSize="15dp"
                 android:fontFamily="@font/baloo_tamma"
                 />
@@ -103,6 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:paddingHorizontal="5dp"
                 android:textSize="15dp"
                 android:fontFamily="@font/baloo_tamma"
                  />
@@ -121,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/baloo_tamma"
                 android:ems="10"
+                android:paddingHorizontal="5dp"
                 android:textSize="15dp"
                  />
 

@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.ims.ImsMmTelManager;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -46,7 +48,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private GridView gridView;
-
+    private EditText edSearch;
 
     private Context context;
 
@@ -100,7 +102,14 @@ public class HomeFragment extends Fragment {
         gridView=  (GridView) getView().findViewById(R.id.gridView);
         LoadingDialalog loadingDialalog=new LoadingDialalog(getContext());
         loadingDialalog.ShowDialog("Chờ xí đi, đang lấy hàng về nè :v");
-
+        edSearch=(EditText) getView().findViewById(R.id.search_edittext);
+        edSearch.setInputType(InputType.TYPE_NULL);
+        edSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onEditTextClick();
+            }
+        });
         btn_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +150,11 @@ public class HomeFragment extends Fragment {
         });
 
     }
-
+    public void onEditTextClick()
+    {
+        Intent intent = new Intent(getContext(), SearchActivity.class);
+        startActivity(intent);
+    }
 
 
 

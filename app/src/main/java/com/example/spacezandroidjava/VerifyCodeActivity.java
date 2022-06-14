@@ -51,6 +51,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
            public void onResponse(Call<VerifyCodeResponse> call, Response<VerifyCodeResponse> response) {
                VerifyCodeResponse res=response.body();
                startActivity(new Intent(VerifyCodeActivity.this,MainActivity.class).putExtra("data",res));
+               finish();
            }
 
            @Override

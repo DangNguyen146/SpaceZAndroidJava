@@ -107,8 +107,10 @@ public class MainActivity extends AppCompatActivity {
         return  isIntroActivityOpnendBefore;
     }
     private void savePrefsData(String token) {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("myToken",MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
+//        SharedPreferences pref = getApplicationContext().getSharedPreferences("myToken",MODE_PRIVATE);
+        SharedPreferences pref=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor=pref.edit();
+
         editor.putString("isLogin",token);
         editor.commit();
     }

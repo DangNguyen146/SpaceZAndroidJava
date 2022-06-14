@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+
+    android:background="@drawable/comment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/comment_avatar"
+        android:layout_width="50dp"
+        android:paddingHorizontal="5dp"
+        android:src="@drawable/logo"
+        android:layout_height="50dp"/>
+    <TextView
+        android:fontFamily="@font/baloo_tamma"
+        android:paddingHorizontal="5dp"
+        app:layout_constraintStart_toEndOf="@+id/comment_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAlignment="textStart"
+        android:textSize="22sp"
+        android:id="@+id/comment_username"
+        android:textColor="@color/black"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tan vuu"/>
+    <TextView
+        android:layout_width="0dp"
+        android:text="hello"
+        android:fontFamily="@font/baloo_tamma"
+        android:id="@+id/comment_content"
+        android:paddingHorizontal="20dp"
+
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/comment_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/comment_avatar"
+        app:layout_constraintBottom_toBottomOf="@+id/comment_avatar"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

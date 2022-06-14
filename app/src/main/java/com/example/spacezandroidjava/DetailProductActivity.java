@@ -2,6 +2,8 @@ package com.example.spacezandroidjava;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -20,6 +23,8 @@ import android.widget.TextView;
 import com.example.spacezandroidjava.Model.AddToCartRequest;
 import com.example.spacezandroidjava.Model.AddToCartResponse;
 import com.example.spacezandroidjava.Model.Cart;
+import com.example.spacezandroidjava.Model.CommentRequest;
+import com.example.spacezandroidjava.Model.GetCommnetsResponse;
 import com.example.spacezandroidjava.Model.Product;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
@@ -39,19 +44,27 @@ import retrofit2.Response;
 public class DetailProductActivity extends AppCompatActivity {
     private BottomSheetDialog  bottomSheetDialog;
     private List<Product> lstItemCart;
+    private CommentAdapter commentAdapter;
+    private RecyclerView rvComment;
+    private Button sendCommentBtn;
+    private EditText commentEd;
+    private int productId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
+
         Intent intent=getIntent();
         TextView name_tv=(TextView) findViewById(R.id.product_name);
-    TextView price_tv=(TextView) findViewById(R.id.product_price);
+        TextView price_tv=(TextView) findViewById(R.id.product_price);
         TextView description_tv=(TextView) findViewById(R.id.product_description);
         RatingBar rate_bar=(RatingBar) findViewById(R.id.rating_btn);
         Button btn_cart=(Button) findViewById(R.id.btn_add_to_cart);
 //        TextView username_tv=(TextView) findViewById(R.id.user_lastName_firstName);
 //        EditText  editText=new EditText(this);
+        commentEd=(EditText) findViewById(R.id.comment_ed);
         ImageView imageView=(ImageView) findViewById(R.id.product_img);
+        sendCommentBtn=(Button) findViewById(R.id.send_comment_icon);
 
         lstItemCart=new LinkedList<Product>();
         SharedPreferences recvPref=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -70,15 +83,18 @@ public class DetailProductActivity extends AppCompatActivity {
         AlertDialog dialog=new AlertDialog.Builder(this).create();
         dialog.setTitle("Nhập nội dung");
 //        dialog.setView(editText);
+         productId=-1;
         if(intent.getExtras()!=null){
             Product p=(Product) intent.getSerializableExtra("product");
             String name= p.getName();
+            productId=p.getId();
             Long price=p.getPrice();
             String imageUrl=p.getImage();
             int rate=p.getRate();
             rate_bar.setRating(rate);
             String description=p.getDescription();
             name_tv.setText(name);
+            rvComment=(RecyclerView) findViewById(R.id.commnents);
 
             price_tv.setText("Giá: " +price.toString()+" VND");
             Picasso.get().load(imageUrl).into(imageView);
@@ -109,6 +125,20 @@ public class DetailProductActivity extends AppCompatActivity {
 
 
         }
+
+
+        getAllCommentByProductId(Integer.toString(productId));
+
+        sendCommentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String comment=commentEd.getText().toString();
+
+                sendComment(new CommentRequest(comment,productId,userId));
+
+            }
+        });
+
         dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Thay đổi", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -146,6 +176,48 @@ public class DetailProductActivity extends AppCompatActivity {
         });
 
 
+    }
+    public void getAllCommentByProductId(String productId){
+        LoadingDialalog ld=new LoadingDialalog(this);
+        ld.ShowDialog("Đang tải");
+        Call<List<GetCommnetsResponse>> getCommnetsResponseCall=ApiClient.getService().getCommnets(productId);
+       getCommnetsResponseCall.enqueue(new Callback<List<GetCommnetsResponse>>() {
+           @Override
+           public void onResponse(Call<List<GetCommnetsResponse>> call, Response<List<GetCommnetsResponse>> response) {
+               List<GetCommnetsResponse> comments=response.body();
+                commentAdapter=new CommentAdapter(getApplicationContext(),comments);
+               LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
+                rvComment.setAdapter(commentAdapter);
+               rvComment.setLayoutManager(linearLayoutManager);
+               ld.HideDialog();
+           }
+
+           @Override
+           public void onFailure(Call<List<GetCommnetsResponse>> call, Throwable t) {
+
+           }
+       });
+
+    }
+    public void sendComment(CommentRequest commentRequest){
+        Call<Object> objectCall=ApiClient.getService().sendComment(commentRequest);
+        objectCall.enqueue(new Callback<Object>() {
+
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+//                Log.i("comment", "onResponse: ");
+
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+
+            }
+        });
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 
 }

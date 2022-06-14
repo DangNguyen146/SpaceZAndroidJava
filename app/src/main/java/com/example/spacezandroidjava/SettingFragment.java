@@ -41,11 +41,13 @@ public class SettingFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    String isLogin;
     private TextView tv_username;
     private ImageView iv_avatar;
     private LoadingDialalog loadingDialalog;
     private TextView tv_changeSetting;
     private int userId;
+    private TextView logoutBtn;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -92,12 +94,30 @@ public class SettingFragment extends Fragment {
         Context context=getActivity();
         final SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(context);
          this.userId=pref.getInt("userId",-1);
+        isLogin=pref.getString("isLogin","");
         tv_username=(TextView) getView().findViewById(R.id.setting_username);
         tv_changeSetting=(TextView) getView().findViewById(R.id.setting_changeInfo);
         iv_avatar=(ImageView) getView().findViewById(R.id.setting_avatar);
         loadingDialalog =new LoadingDialalog(getContext());
         loadingDialalog.ShowDialog("Let's find who you are");
         getUserInfo(Integer.toString(userId));
+        logoutBtn=(TextView) getView() .findViewById(R.id.logout);
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                SharedPreferences pref = getApplicationContext().getSharedPreferences("myToken",MODE_PRIVATE);
+                isLogin="";
+                SharedPreferences.Editor editor=pref.edit();
+                editor.putString("isLogin",isLogin);
+                editor.commit();
+                getActivity().onBackPressed();
+                Intent i=new Intent(getActivity(),LoginScreen.class);
+                startActivity(i);
+
+            }
+
+        });
 
 
 

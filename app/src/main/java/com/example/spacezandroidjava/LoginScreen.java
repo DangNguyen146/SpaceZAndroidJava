@@ -136,7 +136,7 @@ public class LoginScreen extends AppCompatActivity {
                     String message =  "Tài khoản đã tồn tại";
                     erro = findViewById(R.id.erroSignin);
                     erro.setText(message);
-                    loadingDialalog.HideDialog();
+//                    loadingDialalog.HideDialog();
                 }
             }
 

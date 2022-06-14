@@ -7,17 +7,25 @@ public class RegisterRequest {
     private String password;
     private String username;
     private String phone;
+    private Boolean isOtp;
+
+    public Boolean getIsOtp() {
+        return isOtp;
+    }
 
     public String getFirstName() {
         return firstName;
     }
-    public void setPhone(String phone){
-        this.phone=phone;
+
+    public void setPhone(String phone) {
+        this.phone = phone;
 
     }
-    public String getPhone(){
+
+    public String getPhone() {
         return this.phone;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

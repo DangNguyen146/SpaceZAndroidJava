@@ -23,6 +23,9 @@
         android:windowSoftInputMode="adjustPan"
         tools:replace="android:theme">
         <activity
+            android:name=".TurnOnOtp"
+            android:exported="false" />
+        <activity
             android:name=".VerifyCodeActivity"
             android:exported="false" />
         <activity

@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.spacezandroidjava.Model.Product;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -97,6 +100,17 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         context=this.getContext();
+
+        ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+        SliderView sliderView = getView().findViewById(R.id.slider);
+        sliderDataArrayList.add(new SliderData(R.drawable.cover1));
+        sliderDataArrayList.add(new SliderData(R.drawable.cover2));
+        SliderAdapter adapter = new SliderAdapter(getActivity(), sliderDataArrayList);
+        sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+        sliderView.setSliderAdapter(adapter);
+        sliderView.setScrollTimeInSec(3);
+        sliderView.setAutoCycle(true);
+        sliderView.startAutoCycle();
 
         btn_cart=(ImageView) getView().findViewById(R.id.cart_btn);
         gridView=  (GridView) getView().findViewById(R.id.gridView);

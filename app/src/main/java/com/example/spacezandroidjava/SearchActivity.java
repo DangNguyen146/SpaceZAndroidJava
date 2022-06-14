@@ -2,11 +2,13 @@ package com.example.spacezandroidjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -66,6 +68,16 @@ private GridView findGridView;
                    }
                }
                return false;
+           }
+       });
+       findGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               Object o=findGridView.getItemAtPosition(i);
+               Product product=(Product) o;
+               Intent intent=new Intent(getApplicationContext(),DetailProductActivity.class);
+               startActivity(intent.putExtra("product",product));
+
            }
        });
 

@@ -46,6 +46,7 @@ public class SettingFragment extends Fragment {
     private ImageView iv_avatar;
     private LoadingDialalog loadingDialalog;
     private TextView tv_changeSetting;
+    private TextView txtOtp;
     private int userId;
     private TextView logoutBtn;
 
@@ -97,6 +98,7 @@ public class SettingFragment extends Fragment {
         isLogin=pref.getString("isLogin","");
         tv_username=(TextView) getView().findViewById(R.id.setting_username);
         tv_changeSetting=(TextView) getView().findViewById(R.id.setting_changeInfo);
+        txtOtp =getView().findViewById(R.id.txtOtp);
         iv_avatar=(ImageView) getView().findViewById(R.id.setting_avatar);
         loadingDialalog =new LoadingDialalog(getContext());
         loadingDialalog.ShowDialog("Let's find who you are");
@@ -151,6 +153,13 @@ public class SettingFragment extends Fragment {
                        Intent i=new Intent(getActivity(),ChangeUserInformationActivity.class);
                        startActivity(i.putExtra("userInfo",userInformation));
 
+                   }
+               });
+               txtOtp.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View view) {
+                       Intent i =new Intent(getActivity(), TurnOnOtp.class);
+                       startActivity(i.putExtra("userInfo",userInformation));
                    }
                });
 
